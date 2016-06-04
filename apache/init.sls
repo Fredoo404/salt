@@ -1,3 +1,3 @@
-httpd:
-  pkg.installed:
-    - name: httpd
+include:
+  - apache.install
+  - apache.php
