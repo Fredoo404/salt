@@ -3,3 +3,6 @@ mariadb.packages:
     - pkgs:
       - mariadb-server
       - mariadb
+  service.running:
+    - name: mariadb
+    - enable: True
