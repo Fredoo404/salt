@@ -4,7 +4,7 @@ include:
 zabbix-agent:
   pkg.installed
 
-zabbix-service:
+zabbix-agent-service:
   service.running:
     - name: zabbix-agent
     - enable: True
@@ -20,4 +20,4 @@ zabbix-service:
     - require:
       - pkg: zabbix-agent
     - watch_in:
-      - service: zabbix-service
+      - service: zabbix-agent-service

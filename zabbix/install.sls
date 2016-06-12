@@ -11,7 +11,7 @@ zabbix-install:
     - require:
       - pkgrepo: zabbix
 
-zabbix.service:
+zabbix-server-service:
   service.running:
     - name: zabbix-server
     - enable: True
@@ -79,7 +79,7 @@ import-data:
     - group: zabbix
     - mode: 640
     - watch_in:
-      - service: zabbix.service
+      - service: zabbix-server-service
       - service: httpd.service
 
 /etc/zabbix/zabbix_agentd.conf:
