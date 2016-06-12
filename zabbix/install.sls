@@ -80,6 +80,7 @@ import-data:
     - mode: 640
     - watch_in:
       - service: zabbix.service
+      - service: httpd.service
 
 /etc/zabbix/zabbix_agentd.conf:
   file.managed:
