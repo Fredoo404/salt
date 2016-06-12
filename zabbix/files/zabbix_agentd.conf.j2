@@ -82,7 +82,7 @@ LogFileSize=0
 # Default:
 # Server=
 
-Server=10.8.22.34
+Server={{ pillar['zabbix_server'] }}
 
 ### Option: ListenPort
 #	Agent will listen on this port for connections from the server.
@@ -121,9 +121,9 @@ Server=10.8.22.34
 #
 # Mandatory: no
 # Default:
-ServerActive=10.8.22.119
+ServerActive={{ pillar['zabbix_serveractive'] }}
 
-ServerActive=10.8.22.119
+ServerActive={{ pillar['zabbix_serveractive'] }}
 
 ### Option: Hostname
 #	Unique, case sensitive hostname.
@@ -134,7 +134,7 @@ ServerActive=10.8.22.119
 # Default:
 # Hostname=
 
-Hostname=zabbix.fredo.local
+Hostname={{ grains['localhost'] }}
 
 ### Option: HostnameItem
 #	Item used for generating Hostname if it is undefined. Ignored if Hostname is defined.

@@ -31,13 +31,15 @@ zabbix.service:
 
 zabbixdb:
   mysql_database.present:
-  - require:
-    - pkg: mariadb.packages
+    - name: {{ pillar['zabbix_db'] }}
+    - require:
+      - pkg: mariadb.packages
 
 zabbixuser:
   mysql_user.present: 
+    - name: {{ pillar['zabbix_user'] }}
     - host: localhost
-    - password: 'zabbixuser'
+    - password: {{ pillar['zabbix_password'] }}
     - require:
       - pkg: mariadb.packages
 
@@ -45,13 +47,13 @@ zabbixgrant:
   mysql_grants.present:
     - grant: all privileges
     - database: '*.*'
-    - user: zabbixuser
+    - user: {{ pillar['zabbix_user'] }}
     - require:
       - pkg: mariadb.packages
 
 import-schema:
   cmd.run:
-    - name: 'mysql -u zabbixuser -pzabbixuser -D zabbixdb < /usr/share/doc/zabbix-server-mysql-2.4.8/create/schema.sql'
+    - name: mysql -u "{{ pillar['zabbix_user'] }}" -p"{{ pillar['zabbix_password'] }}" -D "{{ pillar['zabbix_db'] }}" < /usr/share/doc/zabbix-server-mysql-2.4.8/create/schema.sql
     - require:
       - mysql_database: zabbixdb
       - mysql_user: zabbixuser
@@ -59,13 +61,13 @@ import-schema:
 
 import-image:
   cmd.run:
-    - name: 'mysql -u zabbixuser -pzabbixuser -D zabbixdb < /usr/share/doc/zabbix-server-mysql-2.4.8/create/images.sql'
+    - name: mysql -u "{{ pillar['zabbix_user'] }}" -p"{{ pillar['zabbix_password'] }}" -D "{{ pillar['zabbix_db'] }}" < /usr/share/doc/zabbix-server-mysql-2.4.8/create/images.sql
     - require:
       - cmd: import-schema
 
 import-data:
   cmd.run:
-    - name: 'mysql -u zabbixuser -pzabbixuser -D zabbixdb < /usr/share/doc/zabbix-server-mysql-2.4.8/create/data.sql'
+    - name: mysql -u "{{ pillar['zabbix_user'] }}" -p"{{ pillar['zabbix_password'] }}" -D "{{ pillar['zabbix_db'] }}" < /usr/share/doc/zabbix-server-mysql-2.4.8/create/data.sql
     - require:
       - cmd: import-image
 
