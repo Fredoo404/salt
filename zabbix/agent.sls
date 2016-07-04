@@ -17,7 +17,5 @@ zabbix-agent-service:
     - user: root
     - group: root
     - mode: 644
-    - require:
-      - pkg: zabbix-agent
     - watch_in:
       - service: zabbix-agent-service
