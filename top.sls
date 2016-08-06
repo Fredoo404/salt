@@ -1,5 +1,5 @@
 base:
-  '*':
+  'zabbix-host':
     - apache
     - mariadb
     - zabbix
