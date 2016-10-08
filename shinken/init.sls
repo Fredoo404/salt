@@ -21,6 +21,7 @@ install-common-require:
       - mongodb
       - mongodb-server
       - httpd-tools
+      - nagios-plugins
 
 shinken-service:
   service.running:
@@ -102,5 +103,19 @@ broker-config-file:
   file.managed:
     - name: /etc/shinken/brokers/broker-master.cfg
     - source: salt://shinken/files/broker-master.cfg
+    - watch_in: 
+      - service: shinken-service
+
+variable-config-file:
+  file.managed:
+    - name: /etc/shinken/resource.d/paths.cfg
+    - source: salt://shinken/files/paths.cfg
+    - watch_in: 
+      - service: shinken-service
+
+commands-check-host-alive:
+  file.managed:
+    - name: /etc/shinken/commands/check_host_alive.cfg
+    - source: salt://shinken/files/check_host_alive.cfg
     - watch_in: 
       - service: shinken-service
