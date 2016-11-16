@@ -1,10 +1,12 @@
+{% from "map.jinja" import config with context %}
+
 install-python-pip:
   pkg.installed:
     - name: python-pip
 
 shinken-user:
   user.present:
-    - name: {{ pillar['shinken_user'] }}
+    - name: {{ config.shinken.shinken_user }}
 
 install-shinken:
   pip.installed:
