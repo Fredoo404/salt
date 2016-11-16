@@ -1,3 +1,5 @@
+{% import_yaml "defaults.yaml" as defaults %}
+
 common-pkgs:
   pkg.installed:
     - pkgs:
@@ -22,4 +24,4 @@ z-unzip:
 
 z-config:
   cmd.run:
-    - name: 'mkdir -p {{ pillar['base']['home'] }}/.zdb && mv /tmp/z-master/z.sh {{ pillar['base']['home'] }}/.zdb'
+    - name: 'mkdir -p {{ config.common.home }}/.zdb && mv /tmp/z-master/z.sh {{ config.common.home }}/.zdb'
