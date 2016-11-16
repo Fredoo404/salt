@@ -46,8 +46,8 @@ zabbixgrant:
 import-schema:
   cmd.run:
     - name: mysql -u "{{ config.zabbix.zabbix_user }}" -p"{{ config.zabbix.zabbix_password }}" -D "{{ config.zabbix.zabbix_db }}" < /usr/share/doc/zabbix-server-mysql-2.4.8/create/schema.sql
-      - mysql_user: zabbixuser
-      - mysql_grants: zabbixgrant
+    - mysql_user: zabbixuser
+    - mysql_grants: zabbixgrant
 
 import-image:
   cmd.run:
