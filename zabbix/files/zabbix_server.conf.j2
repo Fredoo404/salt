@@ -79,7 +79,7 @@ PidFile=/var/run/zabbix/zabbix_server.pid
 # Default:
 # DBName=
 
-DBName={{ pillar['zabbix_db'] }}
+DBName={{ config.zabbix.zabbix_db }}
 
 ### Option: DBSchema
 #	Schema name. Used for IBM DB2 and PostgreSQL.
@@ -95,7 +95,7 @@ DBName={{ pillar['zabbix_db'] }}
 # Default:
 # DBUser=
 
-DBUser={{ pillar['zabbix_user'] }}
+DBUser={{ config.zabbix.zabbix_user }}
 
 ### Option: DBPassword
 #	Database password. Ignored for SQLite.
@@ -103,7 +103,7 @@ DBUser={{ pillar['zabbix_user'] }}
 #
 # Mandatory: no
 # Default:
-DBPassword={{ pillar['zabbix_password'] }}
+DBPassword={{ config.zabbix.zabbix_password }}
 
 ### Option: DBSocket
 #	Path to MySQL socket.
