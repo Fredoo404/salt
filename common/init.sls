@@ -1,4 +1,4 @@
-{% import_yaml "defaults.yaml" as defaults %}
+{% from "map.jinja" import config with context %}
 
 common-pkgs:
   pkg.installed:
