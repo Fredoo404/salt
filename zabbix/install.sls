@@ -1,5 +1,3 @@
-{% from "map.jinja" import config with context %}
-
 include:
   - zabbix.repo
 
@@ -29,33 +27,33 @@ zabbix-server-service:
 
 zabbixdb:
   mysql_database.present:
-    - name: {{ config.zabbix.zabbix_db }}
+    - name: {{ pillar[zabbix][db] }}
 
 zabbixuser:
   mysql_user.present: 
-    - name: {{ config.zabbix.zabbix_user }}
+    - name: {{ pillar[zabbix][user] }}
     - host: localhost
-    - password: {{ config.zabbix.zabbix_password }}
+    - password: {{ pillar[zabbix][password] }}
 
 zabbixgrant:
   mysql_grants.present:
     - grant: all privileges
     - database: '*.*'
-    - user: {{ config.zabbix.zabbix_user }}
+    - user: {{ pillar[zabbix][user] }}
 
 import-schema:
   cmd.run:
-    - name: mysql -u "{{ config.zabbix.zabbix_user }}" -p"{{ config.zabbix.zabbix_password }}" -D "{{ config.zabbix.zabbix_db }}" < /usr/share/doc/zabbix-server-mysql-2.4.8/create/schema.sql
+    - name: mysql -u "{{ pillar[zabbix][user] }}" -p"{{ pillar[zabbix][password] }}" -D "{{ pillar[zabbix][db] }}" < /usr/share/doc/zabbix-server-mysql-2.4.8/create/schema.sql
     - mysql_user: zabbixuser
     - mysql_grants: zabbixgrant
 
 import-image:
   cmd.run:
-    - name: mysql -u "{{ config.zabbix.zabbix_user }}" -p"{{ config.zabbix.zabbix_password }}" -D "{{ config.zabbix.zabbix_db }}" < /usr/share/doc/zabbix-server-mysql-2.4.8/create/images.sql
+    - name: mysql -u "{{ pillar[zabbix][user] }}" -p"{{ pillar[zabbix][password] }}" -D "{{ pillar[zabbix][db] }}" < /usr/share/doc/zabbix-server-mysql-2.4.8/create/images.sql
 
 import-data:
   cmd.run:
-    - name: mysql -u "{{ config.zabbix.zabbix_user }}" -p"{{ config.zabbix.zabbix_password }}" -D "{{ config.zabbix.zabbix_db }}" < /usr/share/doc/zabbix-server-mysql-2.4.8/create/data.sql
+    - name: mysql -u "{{ pillar[zabbix][user] }}" -p"{{ pillar[zabbix][password] }}" -D "{{ pillar[zabbix][db] }}" < /usr/share/doc/zabbix-server-mysql-2.4.8/create/data.sql
 
 /etc/zabbix/zabbix_server.conf:
   file.managed:

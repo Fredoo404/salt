@@ -1,0 +1,2 @@
+shinken:
+  user: 'shinken'

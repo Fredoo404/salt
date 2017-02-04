@@ -1,5 +1,3 @@
-{% from "map.jinja" import config with context %}
-
 common-pkgs:
   pkg.installed:
     - pkgs:
@@ -24,4 +22,4 @@ z-unzip:
 
 z-config:
   cmd.run:
-    - name: 'mkdir -p {{ config.common.home }}/.zdb && mv /tmp/z-master/z.sh {{ config.common.home }}/.zdb'
+    - name: 'mkdir -p {{ pillar[common][home] }}/.zdb && mv /tmp/z-master/z.sh {{ pillar[common][home] }}/.zdb'

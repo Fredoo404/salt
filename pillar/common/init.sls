@@ -1,0 +1,2 @@
+common:
+  home: '/root'
