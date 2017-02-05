@@ -22,4 +22,4 @@ z-unzip:
 
 z-config:
   cmd.run:
-    - name: 'mkdir -p {{ pillar[common][home] }}/.zdb && mv /tmp/z-master/z.sh {{ pillar[common][home] }}/.zdb'
+    - name: 'mkdir -p {{ pillar['common']['home'] }}/.zdb && mv /tmp/z-master/z.sh {{ pillar['common']['home'] }}/.zdb'

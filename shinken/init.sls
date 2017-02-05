@@ -4,7 +4,7 @@ install-python-pip:
 
 shinken-user:
   user.present:
-    - name: {{ pillar[shinken][user] }}
+    - name: {{ pillar['shinken']['user'] }}
 
 install-shinken:
   pip.installed:
