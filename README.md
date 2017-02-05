@@ -27,4 +27,4 @@ Command to launch for deploy zabbix server :
 
 Of course you need to change the pillar for have a correct parameter install.
 
-You can change this pillar in defaults.yaml file.
+You can change this pillar in pillar directory.
