@@ -17,6 +17,8 @@ For finalize installation, you must contact your zabbix server from your browser
 http://your_ip/zabbix
 ```
 
+Default login/password : admin / zabbix
+
 ## Zabbix agent 
 
  ```bash
