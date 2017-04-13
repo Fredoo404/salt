@@ -7,3 +7,6 @@ base:
     - apache
     - mariadb
     - zabbix
+
+  '*salt-master*':
+    - salt.master
