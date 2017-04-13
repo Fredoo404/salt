@@ -1,0 +1,7 @@
+auto_accept: True
+fileserver_backend:
+  - git
+gitfs_remotes:
+  - https://github.com/fredoo404/salt.git
+ext_pillar:
+  - git: master:base https://github.com/fredoo404/salt.git root=pillar
