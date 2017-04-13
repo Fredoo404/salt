@@ -7,8 +7,6 @@ saltstack-repo:
 
 salt-master:
   pkg.installed
-
-salt-master:
   service.running:
     - enable: True
     - reload: True
