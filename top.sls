@@ -1,6 +1,6 @@
 base:
   '*':
-    - commo
+    - common
     - zabbix.agent
 
   '*zabbix*':
