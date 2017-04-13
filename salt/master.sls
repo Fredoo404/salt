@@ -6,7 +6,7 @@ saltstack-repo:
     - gpgkey: https://repo.saltstack.com/yum/redhat/$releasever/$basearch/latest/SALTSTACK-GPG-KEY.pub
 
 salt-master:
-  pkg.installed
+  pkg.installed:
   service.running:
     - enable: True
     - reload: True
