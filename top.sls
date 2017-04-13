@@ -3,7 +3,7 @@ base:
     - common
     - zabbix.agent
 
-  'zabbix-host':
+  '*zabbix*':
     - apache
     - mariadb
     - zabbix
