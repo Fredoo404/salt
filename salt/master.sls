@@ -5,14 +5,19 @@ saltstack-repo:
     - gpgcheck: 1
     - gpgkey: https://repo.saltstack.com/yum/redhat/$releasever/$basearch/latest/SALTSTACK-GPG-KEY.pub
 
-salt-master:
+salt-master-pkg:
   pkg.installed:
+    - name: salt-master
+
+salt-master-service:
   service.running:
+    - name: salt-master
     - enable: True
     - reload: True
     - watch:
       - file: /etc/salt/master
 
-/etc/salt/master:
+salt-master-configuration:
   file.managed:
+    - name: /etc/salt/master
     - source: salt://salt-master/files/master
