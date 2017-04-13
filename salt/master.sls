@@ -20,4 +20,4 @@ salt-master-service:
 salt-master-configuration:
   file.managed:
     - name: /etc/salt/master
-    - source: salt://salt-master/files/master
+    - source: salt://salt/files/master
