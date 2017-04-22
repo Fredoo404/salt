@@ -1,7 +1,7 @@
 saltstack-repo:
   pkgrepo.managed:
     - humanname: SaltStack Latest Release Channel for RHEL/Centos $releasever
-    - mirrorlist: https://repo.saltstack.com/yum/redhat/$releasever/$basearch/latest
+    - baseurl: https://repo.saltstack.com/yum/redhat/$releasever/$basearch/latest
     - gpgcheck: 1
     - gpgkey: https://repo.saltstack.com/yum/redhat/$releasever/$basearch/latest/SALTSTACK-GPG-KEY.pub
 
