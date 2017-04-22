@@ -18,3 +18,7 @@ Default login/password : admin / zabbix
  ```bash
  $ salt 'your_minion' state.sls zabbix.agent
  ```
+
+## Compatible 
+
+Work on Centos 7.
