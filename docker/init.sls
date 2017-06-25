@@ -11,8 +11,10 @@ prerequisite:
 docker_repo:
   pkgrepo.managed:
     - humanname: Official Docker repository
-    - mirrorlist: "deb https://download.docker.com/linux/debian {{ grains['lsb_distrib_codename'] }} stable"
+    - name: "deb https://download.docker.com/linux/debian {{ grains['lsb_distrib_codename'] }}"
+    - file: /etc/apt/sources.list.d/docker.list
+    - dist: stable
     - gpgcheck: 1
-    - gpgkey: https://download.docker.com/linux/debian/gpg
+    - key_url: https://download.docker.com/linux/debian/gpg
 
 {% endif %}
