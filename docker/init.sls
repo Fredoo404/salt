@@ -15,5 +15,8 @@ docker_repo:
     - file: /etc/apt/sources.list.d/docker.list
     - gpgcheck: 1
     - key_url: https://download.docker.com/linux/debian/gpg
-
 {% endif %}
+
+install_docker:
+  pkg.installed:
+    - name: docker-ce
