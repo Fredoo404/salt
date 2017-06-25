@@ -1,7 +1,7 @@
 {% if grains['os'] == 'Debian' %}
 prerequisite:
   pkg.installed:
-    pkgs:
+    - pkgs:
       - apt-transport-https
       - ca-certificates
       - curl
