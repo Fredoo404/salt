@@ -16,8 +16,24 @@ docker_repo:
     - gpgcheck: 1
     - key_url: https://download.docker.com/linux/debian/gpg
 
-{% elif grains['os'] == 'Fedora' %}
+{% elif grains['os'] == 'Ubuntu' %}
+prerequisite:
+  pkg.installed:
+    - pkgs:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - software-properties-common
 
+docker_repo:
+  pkgrepo.managed:
+    - humanname: Official Docker repository
+    - name: "deb https://download.docker.com/linux/ubuntu {{ grains['lsb_distrib_codename'] }} stable"
+    - file: /etc/apt/sources.list.d/docker.list
+    - gpgcheck: 1
+    - key_url: https://download.docker.com/linux/ubuntu/gpg
+
+{% elif grains['os'] == 'Fedora' %}
 docker_repo:
   pkgrepo.managed:
     - humanname: Official Docker repository
@@ -25,7 +41,6 @@ docker_repo:
     - enabled: 1
     - gpgcheck: 1
     - gpgkey: https://download.docker.com/linux/fedora/gpg
-
 
 {% endif %}
 
