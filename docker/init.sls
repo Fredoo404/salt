@@ -32,3 +32,7 @@ docker_repo:
 install_docker:
   pkg.installed:
     - name: docker-ce
+
+start_docker:
+  service.running:
+    - name: docker
