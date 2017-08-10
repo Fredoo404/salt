@@ -1,2 +1,2 @@
 nginx:
-    pkg.installed
+  pkg.installed

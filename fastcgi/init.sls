@@ -1,0 +1,2 @@
+fcgiwrap:
+  pkg.installed
