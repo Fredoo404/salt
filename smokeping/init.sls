@@ -19,4 +19,4 @@ smokeping:
     - template: jinja
     - makedirs: True
     - defaults:
-      servername: {{ pillar['servername'] }}
+      servername: {{ salt['pillar.get']('servername', 'smokeping') }}
