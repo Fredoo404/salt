@@ -2,6 +2,6 @@ nginx:
   pkg:
     - installed
   service.running:
-    enable: True
-    reload: True
+    - enable: True
+    - reload: True
 
