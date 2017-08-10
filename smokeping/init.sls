@@ -18,5 +18,6 @@ smokeping:
     - source: source://smokeping/files/smokeping.conf.j2
     - template: jinja
     - makedirs: True
+    - skip_verify: True
     - defaults:
       servername: {{ salt['pillar.get']('servername', 'smokeping') }}
