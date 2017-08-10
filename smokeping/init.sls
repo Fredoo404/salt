@@ -15,7 +15,7 @@ smokeping:
 
 /etc/nginx/conf.d/smokeping.conf:
   file.managed:
-    - source: source://smokeping/files/smokeping.conf.j2
+    - source: salt://smokeping/files/smokeping.conf.j2
     - template: jinja
     - makedirs: True
     - skip_verify: True
