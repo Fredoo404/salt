@@ -6,7 +6,7 @@ For deploy smokeping to your minion :
  salt 'your_minion_id' state.sls smokeping
  ```
 
-You can join your smokeping with default url : [http://smokeping](http://smokeping)
+You can join your smokeping with default url : [http://smokeping/smokeping.cgi](http://smokeping/smokeping.cgi)
 
 You can change this url with pillar defined in pillar/smokeping/init.sls.
 
