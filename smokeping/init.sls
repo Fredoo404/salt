@@ -4,7 +4,11 @@ include:
   - sendmail
 
 smokeping:
-  pkg.installed
+  pkg:
+    - installed
+  service.running:
+    - enable: True
+    - reload: True
 
 /var/www/smokeping:
   file.symlink:
@@ -13,6 +17,12 @@ smokeping:
 /var/www/smokeping/smokeping.cgi:
   file.symlink:
     - target: /usr/lib/cgi-bin/smokeping.cgi
+
+/etc/smokeping/config.d/pathnames:
+  file.managed:
+    - source: salt://smokeping/files/pathnames.j2
+    - template: jinja
+    - skip_verify: True
 
 /etc/nginx/conf.d/smokeping.conf:
   file.managed:
