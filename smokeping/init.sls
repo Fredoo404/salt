@@ -23,6 +23,8 @@ smokeping:
     - source: salt://smokeping/files/pathnames.j2
     - template: jinja
     - skip_verify: True
+    - watch_in:
+      - service: smokeping
 
 /etc/nginx/conf.d/smokeping.conf:
   file.managed:
