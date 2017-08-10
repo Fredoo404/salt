@@ -1,6 +1,6 @@
 server {
     server_name {{ servername }};
-    root /var/www;
+    root /var/www/smokeping;
     location ~ \.cgi$
     {
         fastcgi_intercept_errors on;
