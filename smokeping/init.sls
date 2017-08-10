@@ -1,6 +1,7 @@
 include:
   - nginx
   - fastcgi
+  - sendmail
 
 smokeping:
   pkg.installed
@@ -21,3 +22,5 @@ smokeping:
     - skip_verify: True
     - defaults:
       servername: {{ salt['pillar.get']('servername', 'smokeping') }}
+    - watch_in:
+      - service: nginx
