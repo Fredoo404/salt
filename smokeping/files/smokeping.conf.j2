@@ -1,0 +1,11 @@
+server {
+    server_name {{ servername }};
+    root /var/www;
+    location ~ \.cgi$
+    {
+        fastcgi_intercept_errors on;
+        include fastcgi_params;
+        fastcgi_pass unix:/var/run/fcgiwrap.socket;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    }
+}

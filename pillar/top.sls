@@ -7,3 +7,6 @@ base:
 
   '*shinken*':
     - shinken
+
+  '*smokeping*':
+    - smokeping
