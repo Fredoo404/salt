@@ -15,7 +15,7 @@ smokeping:
 
 /etc/nginx/conf.d/smokeping.conf:
   file.managed:
-    - name: source://smokeping/files/smokeping.conf.j2
+    - source: source://smokeping/files/smokeping.conf.j2
     - template: jinja
     - makedirs: True
     - defaults:
