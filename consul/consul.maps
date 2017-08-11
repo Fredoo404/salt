@@ -1,0 +1,16 @@
+m4_centos_fcu:
+  - consul-srv01:
+      make_master: True
+      master:
+        user: root
+        interface: 0.0.0.0
+        auto_accept: True
+        fileserver_backend:
+          - git
+        gitfs_remotes:
+          - https://github.com/fredoo404/salt.git
+        ext_pillar:
+          - git: master:base https://github.com/fredoo404/salt.git root=pillar
+  - consul-srv02
+  - consul-srv03
+ 
