@@ -12,7 +12,7 @@ You can change this url with pillar defined in pillar/smokeping/init.sls.
 
 | Distribution | Tested |
 | ------------ | ------ |
-| Debian 9     | Not tested |
+| Debian 9     | Pass   |
 | Ubuntu 17.04 | Not tested |
 | Ubuntu 16.04 | Pass   |
 | Fedora 25    | Not tested |
