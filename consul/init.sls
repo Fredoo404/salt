@@ -10,9 +10,11 @@ consul:
     - source: https://releases.hashicorp.com/consul/0.9.2/consul_0.9.2_linux_amd64.zip
     - skip_verify: True
     - enforce_toplevel: False
-
-/root/test:
   file.managed:
-    - source: salt://consul/files/test.j2
+    - name: /etc/consul.d/config.json
+    - source: salt://consul/files/config.json.j2
+    - makedirs: True
     - template: jinja
     - skip_verify: True
+    - defaults:
+      consul: {{ salt['pillar.get']('consul') }}
