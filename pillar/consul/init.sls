@@ -11,7 +11,7 @@ consul:
     enable_syslog: false
     enable_debug: false
     rejoin_after_leave: true
-    encrypt: "xxxxxxxxxxxxxxxxxxxxxxxx"
+    encrypt: "noEXqWG0QjheTIWRuDkLBw=="
     retry_join: []
     server: false
     services:
