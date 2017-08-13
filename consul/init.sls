@@ -1,4 +1,3 @@
-{% consul_server_ip = salt['mine.get']('G@roles:server', 'internal_ip', 'compound').json %}
 {% do consul['config'].update({'bind_addr': salt['grains.get']('ip_interfaces:eth0')[0]}) %}
 
 {% for server, addrs in salt['mine.get']('G@roles:consul-server', 'internal_ip', 'compound').items() %}
