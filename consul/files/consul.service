@@ -7,7 +7,7 @@ After=network.target
 User=consul
 Group=consul
 Environment="GOMAXPROCS=2" "PATH=/usr/local/bin:/usr/bin:/bin"
-ExecStart=/usr/local/bin/consul agent -config-dir=/etc/consul.d
+ExecStart=/usr/local/sbin/consul agent -config-dir=/etc/consul.d
 ExecReload=/bin/kill -HUP $MAINPID
 KillMode=process
 KillSignal=TERM
