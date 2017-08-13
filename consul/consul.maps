@@ -13,28 +13,28 @@ m4_centos_fcu:
           - git: master:base https://github.com/fredoo404/salt.git root=pillar
       minion:
         log_level: debug
+        mine_functions:
+          internal_ip:
+            - mine_function: network.interface_ip
+            - eth0
       grains:
         roles: server
-      mine_functions:
-        external_ip:
-          - mine_function: network.interface_ip
-          - eth0
   - consul-srv02:
       minion:
         log_level: debug
+        mine_functions:
+          internal_ip:
+            - mine_function: network.interface_ip
+            - eth0
       grains:
         roles: server
-      mine_functions:
-        external_ip:
-          - mine_function: network.interface_ip
-          - eth0
   - consul-srv03:
       minion:
         log_level: debug
+        mine_functions:
+          internal_ip:
+            - mine_function: network.interface_ip
+            - eth0
       grains:
         roles: server
-      mine_functions:
-        external_ip:
-          - mine_function: network.interface_ip
-          - eth0
  
