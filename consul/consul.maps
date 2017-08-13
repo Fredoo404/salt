@@ -14,15 +14,15 @@ m4_centos_fcu:
       minion:
         log_level: debug
       grains:
-        roles: consul-server
+        roles: server
   - consul-srv02:
       minion:
         log_level: debug
       grains:
-        roles: consul-server
+        roles: server
   - consul-srv03:
       minion:
         log_level: debug
       grains:
-        roles: consul-server
+        roles: server
  

@@ -1,4 +1,4 @@
-{% consul_server_ip = salt['mine.get']('G@roles:consul-server', 'internal_ip', 'compound').json %}
+{% consul_server_ip = salt['mine.get']('G@roles:server', 'internal_ip', 'compound').json %}
 consul:
   user:
     - present
