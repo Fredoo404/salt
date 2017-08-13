@@ -3,6 +3,7 @@
 {% if grains['roles'] %}
 {% do consul['config'].update({'server': true}) %}
 {% endif %}
+{% set list_server = [] %}
 {% for server, addrs in salt['mine.get']('G@roles:server', 'internal_ip', 'compound').items() %}
 {% do list_server.append(addrs) %}
 {% endfor %}
