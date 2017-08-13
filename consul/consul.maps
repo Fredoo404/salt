@@ -1,4 +1,4 @@
-m4_centos_fcu:
+m4_fedora_fcu:
   - consul-srv01:
       make_master: True
       master:
@@ -25,4 +25,13 @@ m4_centos_fcu:
         log_level: debug
       grains:
         roles: server
+  - consul-agent01:
+      minion:
+        log_level: debug
+  - consul-agent02:
+      minion:
+        log_level: debug
+  - consul-agent03:
+      minion:
+        log_level: debug
  
