@@ -42,4 +42,7 @@ consul:
     - mode: 755
     - makedirs: True
 
+consul_service:
+  service.running:
+    enable: True
 
