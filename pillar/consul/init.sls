@@ -1,3 +1,3 @@
 consul:
-  key: 1
-  key: 2
+  key1: 1
+  key2: 2
