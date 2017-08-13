@@ -3,9 +3,8 @@
 {% if grains['roles'] %}
 {% do consul['config'].update({'server': true}) %}
 {% endif %}
-
 {% for server, addrs in salt['mine.get']('G@roles:server', 'internal_ip', 'compound').items() %}
-{% do consul['config'].update({'retry_join': addrs}) %}
+{% do consul['config'].update({'retry_join'[0]: addrs}) %}
 {% endfor %}
 
 consul:
