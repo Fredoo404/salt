@@ -1,3 +1,4 @@
+{% set consul = salt['pillar.get']('consul') %}
 {% do consul['config'].update({'bind_addr': salt['grains.get']('ip_interfaces:eth0')[0]}) %}
 
 {% for server, addrs in salt['mine.get']('G@roles:consul-server', 'internal_ip', 'compound').items() %}
