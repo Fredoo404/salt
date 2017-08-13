@@ -1,8 +1,3 @@
-
-/usr/local/bin:
-  file.directory:
-    - makedirs: True
-
 consul:
   user:
     - present
