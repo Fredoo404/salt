@@ -27,9 +27,10 @@ consul:
     - skip_verify: True
     - defaults:
       consul: {{ consul }}
+
 {% if salt['test.provider']('service') == 'systemd' %}
+/etc/systemd/system/consul.service:
   file.managed:
-    - name: /etc/systemd/system/consul.service
     - source: salt://consul/files/consul.service
     - skip_verify: True
 {% endif %}
