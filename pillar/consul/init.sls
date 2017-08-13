@@ -16,6 +16,6 @@ consul:
       - ip1
       - ip2
       - ip3
-    server: true
+    server: false
     services:
       - name: service_test
