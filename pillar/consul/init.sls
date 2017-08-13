@@ -3,5 +3,19 @@ mine_functions:
     mine_function: network.ip_addrs
     interface: eth0
 consul:
-  key1: 1
-  key2: 2
+  version: 0.8.5
+  config:
+    bind_addr: 0.0.0.0
+    data_dir: /var/consul
+    log_level: info
+    enable_syslog: false
+    enable_debug: false
+    rejoin_after_leave: true
+    encrypt: "xxxxxxxxxxxxxxxxxxxxxxxx"
+    retry_join: 
+      - ip1
+      - ip2
+      - ip3
+    server: true
+    services:
+      - name: service_test

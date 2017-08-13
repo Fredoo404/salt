@@ -1,4 +1,10 @@
 {% consul_server_ip = salt['mine.get']('G@roles:server', 'internal_ip', 'compound').json %}
+{% do consul['config'].update({'bind_addr': salt['grains.get']('ip_interfaces:eth0')[0]}) %}
+
+{% for server, addrs in salt['mine.get']('G@roles:consul-server', 'internal_ip', 'compound').items() %}
+{% do consul['config'].update({'retry_join': addrs}) %}
+{% endfor %}
+
 consul:
   user:
     - present
@@ -19,3 +25,4 @@ consul:
     - skip_verify: True
     - defaults:
       consul: {{ salt['pillar.get']('consul', default=consul_server_ip, merge=True) }}
+
