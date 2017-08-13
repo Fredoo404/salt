@@ -35,4 +35,11 @@ consul:
     - skip_verify: True
 {% endif %}
 
+/var/consul:
+  file.directory:
+    - user: consul
+    - group: consul
+    - mode: 755
+    - makedirs: True
+
 
