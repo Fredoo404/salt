@@ -3,7 +3,7 @@ mine_functions:
     mine_function: network.ip_addrs
     interface: eth0
 consul:
-  version: 0.8.5
+  version: 0.9.2
   config:
     bind_addr: 0.0.0.0
     data_dir: /var/consul
@@ -15,5 +15,3 @@ consul:
     retry_join: []
     server: false
     ui: true
-    services:
-      - name: service_test

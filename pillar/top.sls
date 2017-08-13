@@ -13,3 +13,6 @@ base:
 
   '*consul*':
     - consul
+
+  '*consul-agent*':
+    - consul.services.test1
