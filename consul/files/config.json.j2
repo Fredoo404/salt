@@ -3,4 +3,4 @@
 {% endfor -%}
 
 {{ consul_server_ip }}
-{{ consul + consul_server_ip | json }}
+{{ consul ~ consul_server_ip | json }}
