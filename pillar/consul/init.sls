@@ -12,10 +12,7 @@ consul:
     enable_debug: false
     rejoin_after_leave: true
     encrypt: "xxxxxxxxxxxxxxxxxxxxxxxx"
-    retry_join: 
-      - ip1
-      - ip2
-      - ip3
+    retry_join: []
     server: false
     services:
       - name: service_test
