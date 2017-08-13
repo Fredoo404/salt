@@ -1,7 +1,7 @@
 {{ consul.config | json }}
 {% set list_server = [] %}
-{% for server, addrs in salt['mine.get']('G@roles:server', 'internal_ip', 'compound').items() %}
+{% for server, addrs in salt['mine.get']('G@roles:server', 'internal_ip', 'compound').items() -%}
 {% do list_server.append(addrs) %}
 {{ list_server }}
 {{ server }}{{ addrs }}
-{% endfor %}
+{% endfor -%}
