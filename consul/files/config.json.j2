@@ -2,4 +2,5 @@
 {{ server }} {{ addrs }}
 {% endfor -%}
 
-{{ consul | json }}
+{{ consul_server_ip }}
+{{ consul + consul_server_ip | json }}
