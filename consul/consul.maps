@@ -11,6 +11,30 @@ m4_centos_fcu:
           - https://github.com/fredoo404/salt.git
         ext_pillar:
           - git: master:base https://github.com/fredoo404/salt.git root=pillar
-  - consul-srv02
-  - consul-srv03
+      minion:
+        log_level: debug
+      grains:
+        roles: server
+      mine_functions:
+        external_ip:
+          - mine_function: network.interface_ip
+          - eth0
+  - consul-srv02:
+      minion:
+        log_level: debug
+      grains:
+        roles: server
+      mine_functions:
+        external_ip:
+          - mine_function: network.interface_ip
+          - eth0
+  - consul-srv03:
+      minion:
+        log_level: debug
+      grains:
+        roles: server
+      mine_functions:
+        external_ip:
+          - mine_function: network.interface_ip
+          - eth0
  
