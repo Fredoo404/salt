@@ -1,3 +1,4 @@
+{% consul_server_ip = salt['mine.get']('G@roles:consul-server', 'internal_ip', 'compound').values %}
 consul:
   user:
     - present
@@ -17,5 +18,4 @@ consul:
     - template: jinja
     - skip_verify: True
     - defaults:
-      consul: {{ salt['pillar.get']('consul') }}
-      consul_server_ip: {{ salt['mine.get']('G@roles:consul-server', 'internal_ip', 'compound').values }}
+      consul: {{ salt['pillar.get']('consul', default=consul_server_ip, merge=True) }}

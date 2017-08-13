@@ -1,6 +1,1 @@
-{% for server, addrs in salt['mine.get']('G@roles:consul-server', 'internal_ip', 'compound').items() -%}
-{{ server }} {{ addrs }}
-{% endfor -%}
-
-{{ consul_server_ip }}
-{{ consul ~ consul_server_ip | json }}
+{{ consul | json }}
