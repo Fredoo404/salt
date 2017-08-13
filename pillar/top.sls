@@ -11,6 +11,5 @@ base:
   '*smokeping*':
     - smokeping
 
-  'G@roles:consul-server':
+  '*consul*':
     - consul
-    - consul.server
