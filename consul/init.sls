@@ -1,7 +1,4 @@
 
-unzip:
-  pkg.installed
-
 /usr/local/bin:
   file.directory:
     - makedirs: True
