@@ -14,5 +14,6 @@ consul:
     encrypt: "noEXqWG0QjheTIWRuDkLBw=="
     retry_join: []
     server: false
+    ui: true
     services:
       - name: service_test
