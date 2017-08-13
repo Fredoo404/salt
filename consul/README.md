@@ -42,6 +42,5 @@ consul:
 | ------------ | ------ |
 | Debian 9     | Not tested |
 | Ubuntu 17.04 | Not tested |
-| Fedora 25    | Not tested |
-| Fedora 26    | Not tested |
+| Fedora 26    | Pass   |
 | Centos 7     | Pass   |
