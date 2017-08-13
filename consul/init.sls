@@ -13,8 +13,8 @@ consul:
     - system: True
     - addusers:
       - consul
-  file.managed:
-    - name: /home/consul/consul.zip
+  archive.extract:
+    - name: /usr/local/sbin/consul
     - source: https://releases.hashicorp.com/consul/0.9.2/consul_0.9.2_linux_amd64.zip
     - skip_verify: True
 
