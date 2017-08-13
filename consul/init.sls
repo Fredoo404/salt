@@ -10,9 +10,8 @@ consul:
   user:
     - present
   group.present:
-    - createhome: False
     - system: True
-    - groups:
+    - addusers:
       - consul
 
 /root/test:
