@@ -24,5 +24,5 @@ consul:
     - template: jinja
     - skip_verify: True
     - defaults:
-      consul: {{ salt['pillar.get']('consul', default=consul_server_ip, merge=True) }}
+      consul: {{ consul }}
 
