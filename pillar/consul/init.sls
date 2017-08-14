@@ -6,6 +6,7 @@ consul:
   version: 0.9.2
   config:
     bind_addr: 0.0.0.0
+    bootstrap_expect: 3
     data_dir: /var/consul
     log_level: info
     enable_syslog: false
