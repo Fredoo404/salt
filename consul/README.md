@@ -40,7 +40,7 @@ consul:
 
 | Distribution | Tested |
 | ------------ | ------ |
-| Debian 9     | Not tested |
+| Debian 9     | Pass   |
 | Ubuntu 17.04 | Not tested |
 | Fedora 26    | Pass   |
 | Centos 7     | Pass   |
