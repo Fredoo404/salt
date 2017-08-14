@@ -28,10 +28,16 @@ m4_fedora_fcu:
   - consul-agent01:
       minion:
         log_level: debug
+      grains:
+        roles: agent
   - consul-agent02:
       minion:
         log_level: debug
+      grains:
+        roles: agent
   - consul-agent03:
       minion:
         log_level: debug
+      grains:
+        roles: agent
  
