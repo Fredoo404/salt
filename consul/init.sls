@@ -1,5 +1,6 @@
 {% set consul = salt['pillar.get']('consul') %}
 {% do consul['config'].update({'bind_addr': salt['grains.get']('ip_interfaces:eth0')[0]}) %}
+{% do consul['config'].update({'client_addr': salt['grains.get']('ip_interfaces:eth0')[0]}) %}
 {% if salt['grains.get']('roles', None) %}
 {% do consul['config'].update({'server': true}) %}
 {% endif %}
