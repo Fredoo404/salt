@@ -10,3 +10,6 @@ base:
 
   '*salt-master*':
     - salt.master
+
+  'G@roles:k8s-cli':
+    - kubernetes.kubectl

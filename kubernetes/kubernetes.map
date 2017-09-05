@@ -11,3 +11,5 @@ m4_ubuntu_fcu:
           - https://github.com/fredoo404/salt.git
         ext_pillar:
           - git: master:base https://github.com/fredoo404/salt.git root=pillar
+      grains: 
+        roles: k8s-cli
