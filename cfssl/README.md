@@ -13,6 +13,7 @@ salt "your_minion" state.apply cfssl
 Verify cfssl version :
 
 ```bash
+$ cfssl version
 Version: 1.2.0
 Revision: dev
 Runtime: go1.6
