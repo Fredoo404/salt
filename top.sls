@@ -13,3 +13,4 @@ base:
 
   'G@roles:k8s-cli':
     - kubernetes.kubectl
+    - cfssl
