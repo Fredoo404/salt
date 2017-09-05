@@ -13,3 +13,18 @@ m4_ubuntu_fcu:
           - git: master:base https://github.com/fredoo404/salt.git root=pillar
       grains: 
         roles: k8s-cli
+  - k8s-controllers-00:
+      minion:
+        log_level: debug
+      grains:
+        roles: controllers
+  - k8s-controllers-01:
+      minion:
+        log_level: debug
+      grains:
+        roles: controllers
+  - k8s-controllers-02:
+      minion:
+        log_level: debug
+      grains:
+        roles: controllers
