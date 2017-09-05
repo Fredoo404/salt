@@ -1,0 +1,13 @@
+m4_ubuntu_fcu:
+  - k8s-salt-master:
+      make_master: True
+      master:
+        user: root
+        interface: 0.0.0.0
+        auto_accept: True
+        fileserver_backend:
+          - git
+        gitfs_remotes:
+          - https://github.com/fredoo404/salt.git
+        ext_pillar:
+          - git: master:base https://github.com/fredoo404/salt.git root=pillar
