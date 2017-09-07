@@ -1,1 +1,1 @@
-{{ certs | json }}
+{{ certs.ca-config | json }}

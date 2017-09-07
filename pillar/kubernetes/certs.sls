@@ -1,5 +1,5 @@
 certs:
-  caconfig:
+  ca-config:
     signing:
       default:
         expiry: "8760h"
@@ -10,7 +10,7 @@ certs:
           - "key encipherment"
           - "server auth"
           - "client auth"
-  cacsr:
+  ca-csr:
     CN: "Kubernetes"
     key:
       - algo: "rsa"

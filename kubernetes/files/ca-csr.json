@@ -1,1 +1,1 @@
-{{ certs | json }}
+{{ certs.ca-csr | json }}
