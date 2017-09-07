@@ -13,11 +13,11 @@ certs:
   ca-csr:
     CN: "Kubernetes"
     key:
-      - algo: "rsa"
-      - size: "2048"
+      algo: "rsa"
+      size: "2048"
     names:
       - C: "US"
-      - L: "Portland"
-      - O: "Kubernetes"
-      - OU: "CA"
-      - ST: "Oregon"
+        L: "Portland"
+        O: "Kubernetes"
+        OU: "CA"
+        ST: "Oregon"
