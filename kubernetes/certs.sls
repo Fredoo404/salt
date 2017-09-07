@@ -8,10 +8,3 @@
     - defaults:
         certs: {{ salt['pillar.get']('certs') }}
 
-/root/ca-csr.json:
-  file.managed:
-    - source: salt://kubernetes/files/ca-csr.json
-    - template: jinja
-    - defaults:
-        certs: {{ salt['pillar.get']('certs') }}
-    
