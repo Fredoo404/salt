@@ -5,12 +5,12 @@
     - source: salt://kubernetes/files/ca-config.json.j2
     - template: jinja
     - defaults:
-      certs: {{ certs }}
+        certs: {{ certs }}
 
 /root/ca-csr.json:
   file.managed:
     - source: salt://kubernetes/files/ca-csr.json.j2
     - template: jinja
     - defaults:
-      certs: {{ certs }}
+        certs: {{ certs }}
     
