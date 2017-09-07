@@ -20,3 +20,6 @@ base:
     - match: compound
     - consul
     - consul.services.test1
+
+  'G@roles:k8s-cli':
+    - kubernetes.certs
