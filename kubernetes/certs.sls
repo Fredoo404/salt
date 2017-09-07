@@ -1,6 +1,4 @@
 {% set certs = salt['pillar.get']('certs') %}
-include:
-  - cfssl
 
 /root/ca-config.json:
   file.managed:
