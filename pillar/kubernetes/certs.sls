@@ -10,6 +10,7 @@ certs:
           - "key encipherment"
           - "server auth"
           - "client auth"
+          expiry: 8760h
   ca-csr:
     CN: "Kubernetes"
     key:
