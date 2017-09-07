@@ -1,4 +1,5 @@
 certs:
+  test: ok
   ca-config:
     signing:
       default:
