@@ -15,7 +15,7 @@ certs:
     key:
       - algo: "rsa"
       - size: "2048"
-    #    names:
+    names:
       - C: "US"
       - L: "Portland"
       - O: "Kubernetes"
