@@ -4,7 +4,7 @@ include:
 
 /root/ca-config.json:
   file.managed:
-    - source://kubernetes/files/ca-config.json.j2
+    - source: salt://kubernetes/files/ca-config.json.j2
     - template: jinja
     - defaults:
       certs: {{ certs }}
