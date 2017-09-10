@@ -17,6 +17,6 @@ include:
 
 generate_ca_cert:
   cmd.run:
-    name: cfssl gencert -initca ca-csr.json | cfssljson -bare ca
-    cwd: /root
+    - name: cfssl gencert -initca ca-csr.json | cfssljson -bare ca
+    - cwd: /root
     
