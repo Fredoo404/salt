@@ -14,4 +14,9 @@ include:
     - template: jinja
     - defaults:
       certs: {{ salt['pillar.get']('certs:ca-csr') }}
+
+generate_ca_cert:
+  cmd.run:
+    name: cfssl gencert -initca ca-csr.json | cfssljson -bare ca
+    cwd: /root
     
