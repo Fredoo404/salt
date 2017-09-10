@@ -4,4 +4,4 @@ mine_functions:
     interface: eth0
   external_ip:
     mine_function: cmd.run
-    cmd: curl http://169.254.169.254/latest/meta-data/public-ipv4
+    cmd: curl -s http://169.254.169.254/latest/meta-data/public-ipv4
