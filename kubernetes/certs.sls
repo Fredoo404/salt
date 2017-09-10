@@ -61,10 +61,17 @@ generate_admin_cert:
 {% set certs = salt['pillar.get']('certs') %}
 {% for worker in salt['mine.get']('G@roles:workers', 'machine_name', 'compound') %}
 {% do certs['worker-csr'].update({'CN':'system:node:' + worker }) %}
+{% set internal_ip = salt['mine.get']('{ worker }', 'internal_ip') %}
+{% set external_ip = salt['mine.get']('{ worker }', 'external_ip') %}
+
 /root/{{ worker }}-csr.json:
   file.managed:
     - source: salt://kubernetes/files/json_file.j2
     - template: jinja
     - defaults:
       certs: {{ certs['worker-csr'] }}
+
+generate_{{ worker }}_cert:
+  cmd.run:
+    - name: cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -hostname={{ worker }},{{ internal_ip }},{{ external_ip }} -profile=kubernetes {{ worker }}-csr.json | cfssljson -bare {{ worker }}
 {% endfor %}
