@@ -57,3 +57,9 @@ generate_admin_cert:
 # Generate Kubelet certs.
 #
 #############################################################
+
+{% for worker in salt['grains.get']('roles:workers') %}
+test:
+  cmd.run:
+    - name: touch /root/{{ worker }}
+{% endfor %}
