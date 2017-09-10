@@ -66,5 +66,5 @@ generate_admin_cert:
     - source: salt://kubernetes/files/json_file.j2
     - template: jinja
     - defaults:
-      certs: {{ worker_csr }}
+      certs: {{ certs['worker_csr'] }}
 {% endfor %}
