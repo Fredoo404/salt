@@ -60,7 +60,7 @@ generate_admin_cert:
 
 {% set certs = salt['pillar.get']('certs') %}
 {% for worker in salt['grains.get']('G@roles:workers') %}
-{% do certs['worker_csr'].update({'CN':'system:node:' worker }) %}
+{% do certs['worker_csr'].update({'CN':'system:node:' + worker }) %}
 /root/{{ worker }}-csr.json:
   file.managed:
     - source: salt://kubernetes/files/json_file.j2
