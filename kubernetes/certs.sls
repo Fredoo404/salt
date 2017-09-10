@@ -58,7 +58,7 @@ generate_admin_cert:
 #
 #############################################################
 
-{% for worker in salt['grains.get']('roles:workers') %}
+{% for worker in salt['grains.get']('G@roles:workers', 'compound') %}
 test_{{ worker }}:
   cmd.run:
     - name: touch /root/{{ worker }}

@@ -21,5 +21,9 @@ base:
     - consul
     - consul.services.test1
 
+  'G@roles:k8s-cli or G@roles:workers or G@roles:controllers':
+    - match: compound
+    - kubernetes
+    
   'G@roles:k8s-cli':
     - kubernetes.certs
