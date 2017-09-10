@@ -15,4 +15,4 @@ copy_ca_certs_on_controllers:
     - tgt: 'roles:k8s-cli'
     - tgt_type: grain
     - arg:
-      - 'salt-cp -G "roles:controllers" /root/ca-key.pem /root/'
+      - 'salt-cp -G "roles:controllers" /root/ca*.pem /root/'
