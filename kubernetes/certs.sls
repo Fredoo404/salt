@@ -59,7 +59,7 @@ generate_admin_cert:
 #############################################################
 
 {% set certs = salt['pillar.get']('certs') %}
-{% for worker in salt['grains.get']('G@roles:workers') %}
+{% for worker in salt['mine.get']('G@roles:workers', 'machine_name', 'compound') %}
 {% do certs['worker_csr'].update({'CN':'system:node:' + worker }) %}
 /root/{{ worker }}-csr.json:
   file.managed:
