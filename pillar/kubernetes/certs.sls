@@ -31,5 +31,16 @@ certs:
       - C: "US"
         L: "Portland"
         O: "Kubernetes"
-        OU: "CA"
+        OU: "My kubernetes"
+        ST: "Oregon"
+  worker-csr:
+    CN: ""
+    key:
+      algo: "rsa"
+      size: 2048
+    names:
+      - C: "US"
+        L: "Portland"
+        O: "Kubernetes"
+        OU: "My kubernetes"
         ST: "Oregon"
