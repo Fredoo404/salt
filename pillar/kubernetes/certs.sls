@@ -3,14 +3,14 @@ certs:
     signing:
       default:
         expiry: "8760h"
-    profiles:
-      kubernetes:
-        usages:
-          - "signing"
-          - "key encipherment"
-          - "server auth"
-          - "client auth"
-        expiry: 8760h
+      profiles:
+        kubernetes:
+          usages:
+            - "signing"
+            - "key encipherment"
+            - "server auth"
+            - "client auth"
+          expiry: 8760h
   ca-csr:
     CN: "Kubernetes"
     key:
@@ -23,7 +23,7 @@ certs:
         OU: "CA"
         ST: "Oregon"
   admin-csr:
-    CN: "Admin"
+    CN: "admin"
     key:
       algo: "rsa"
       size: 2048
