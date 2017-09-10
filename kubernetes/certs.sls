@@ -1,6 +1,12 @@
 include:
   - cfssl
 
+#############################################################
+#
+# Generate Ca certs.
+#
+#############################################################
+
 /root/ca-config.json:
   file.managed:
     - source: salt://kubernetes/files/ca-config.json.j2
@@ -20,3 +26,34 @@ generate_ca_cert:
     - name: cfssl gencert -initca ca-csr.json | cfssljson -bare ca
     - cwd: /root
     
+copy_ca_certs_on_controllers:
+  cmd.run:
+    - name: 'salt-cp -G "roles:controllers" /root/ca*.pem /root/'
+
+copy_ca_certs_on_workers:
+  cmd.run:
+    - name: 'salt-cp -G "roles:workers" /root/ca*.pem /root/'
+
+#############################################################
+#
+# Generate Admin certs.
+#
+#############################################################
+
+/root/admin-csr.json:
+  file.managed:
+    - source: salt://kubernetes/files/admin-csr.json.j2
+    - template: jinja
+    - defaults:
+      certs: {{ salt['pillar.get']('certs:admin-csr') }}
+
+generate_admin_cert:
+  cmd.run:
+    - name: cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=kubernetes admin-csr.json | cfssljson -bare admin
+    - cwd: /root
+
+#############################################################
+#
+# Generate Kubelet certs.
+#
+#############################################################
