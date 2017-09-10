@@ -61,8 +61,8 @@ generate_admin_cert:
 {% set certs = salt['pillar.get']('certs') %}
 {% for worker in salt['mine.get']('G@roles:workers', 'machine_name', 'compound') %}
 {% do certs['worker-csr'].update({'CN':'system:node:' + worker }) %}
-{% set internal_ip = __salt__.saltutil.runner('mine.get', '{ worker }', 'internal_ip') %}
-{% set external_ip = __salt__.saltutil.runner('mine.get', '{ worker }', 'external_ip') %}
+{% set internal_ip = salt.saltutil.runner('mine.get', tgt='{ worker }', fun='internal_ip', tgt_type='glob') %}
+{% set external_ip = salt.saltutil.runner('mine.get', tgt='{ worker }', fun='external_ip', tgt_type='glob') %}
 
 /root/{{ worker }}-csr.json:
   file.managed:
