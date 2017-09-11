@@ -61,8 +61,8 @@ generate_admin_cert:
 {% set certs = salt['pillar.get']('certs') %}
 {% for worker in salt['mine.get']('G@roles:workers', 'machine_name', 'compound') %}
 {% do certs['worker-csr'].update({'CN':'system:node:' + worker }) %}
-{% set private_ip = salt['mine.get'](worker, 'internal_ip') %}
-{% set public_ip = salt['mine.get'](worker, 'external_ip') %}
+{% set private_ip = salt['mine.get'](worker, 'internal_ip').values() %}
+{% set public_ip = salt['mine.get'](worker, 'external_ip').values() %}
 
 /root/{{ worker }}-csr.json:
   file.managed:
@@ -73,7 +73,7 @@ generate_admin_cert:
 
 generate_{{ worker }}_cert:
   cmd.run:
-    - name: cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -hostname={{ worker }},{{ private_ip[worker][0] }},{{ public_ip[worker] }} -profile=kubernetes {{ worker }}-csr.json | cfssljson -bare {{ worker }}
+    - name: cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -hostname={{ worker }},{{ private_ip[0] }},{{ public_ip }} -profile=kubernetes {{ worker }}-csr.json | cfssljson -bare {{ worker }}
     - cwd: /root
 {% endfor %}
 
@@ -106,7 +106,7 @@ generate_kube_proxy_cert:
 {% do hostname_config.append(addr[0]) %}
 {% endfor %}
 {% set ip_lb = salt['mine.get']('G@roles:lb', 'external_ip', 'compound').values() %}
-{% do hostname_config.append(ip_lb) %}
+{% do hostname_config.append(ip_lb|join(',')) %}
 {% do hostname_config.append('127.0.0.1') %}
 {% do hostname_config.append('kubernetes.default') %}
 
