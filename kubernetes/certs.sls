@@ -106,7 +106,7 @@ generate_kube_proxy_cert:
 {% set hostname_config = hostname_config + ',' + addr[0] %}
 {% endfor %}
 {% set ip_lb = salt['mine.get']('G@roles:lb', 'external_ip', 'compound').items() %}
-{% set hostname_config = hostname_config + ',' + ip_lb + ',127.0.0.1, kubernetes.default' %}
+{% set hostname_config = hostname_config + ',' + ip_lb[0] + ',127.0.0.1, kubernetes.default' %}
 
 /root/kubernetes-csr.json:
   file.managed:
