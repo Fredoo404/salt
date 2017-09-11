@@ -102,8 +102,8 @@ generate_kube_proxy_cert:
 #############################################################
 
 {% set hostname_config = [] %}
-{% for server, addr in salt['mine.get']('G@roles:controllers', 'internal_ip', 'compound').items() %}
-{% do hostname_config.append(addr[0]) %}
+{% for addr in salt['mine.get']('G@roles:controllers', 'internal_ip', 'compound').items() %}
+{% do hostname_config.append(addr) %}
 {% endfor %}
 {% set ip_lb = salt['mine.get']('G@roles:lb', 'external_ip', 'compound').values() %}
 {% do hostname_config.append(ip_lb|join(',')) %}
