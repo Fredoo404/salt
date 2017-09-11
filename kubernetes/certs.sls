@@ -119,5 +119,5 @@ generate_kube_proxy_cert:
 
 generate_kubernetes_cert:
   cmd.run:
-    - name: cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -hostname={{ hostname_config.items() }} -profile=kubernetes kubernetes-csr.json | cfssljson -bare kubernetes
+    - name: cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -hostname={{ hostname_config|join(',') }} -profile=kubernetes kubernetes-csr.json | cfssljson -bare kubernetes
     - cwd: /root
