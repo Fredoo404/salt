@@ -102,7 +102,7 @@ generate_kube_proxy_cert:
 #############################################################
 
 {% set hostname_config = '' %}
-{% for server, addr in salt['mine.get']('G@roles:controllers', 'internal_ip', 'compound') %}
+{% for server, addr in salt['mine.get']('G@roles:controllers', 'internal_ip', 'compound').items() %}
 {% set hostname_config = hostname_config + addr %}
 {% endfor %}
 {% set ip_lb = salt['mine.get']('G@roles:lb', 'external_ip', 'compound') %}
@@ -118,4 +118,4 @@ generate_kube_proxy_cert:
 generate_kubernetes_cert:
   cmd.run:
     - name: cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -hostname={{ hostname_config }} -profile=kubernetes kubernetes-csr.json | cfssljson -bare kubernetes
-    - cdw: /root
+    - cwd: /root
