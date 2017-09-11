@@ -76,3 +76,21 @@ generate_{{ worker }}_cert:
     - name: cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -hostname={{ worker }},{{ private_ip[worker][0] }},{{ public_ip[worker] }} -profile=kubernetes {{ worker }}-csr.json | cfssljson -bare {{ worker }}
     - cwd: /root
 {% endfor %}
+
+#############################################################
+#
+# Generate Kube-proxy certs.
+#
+#############################################################
+
+/root/kube-proxy-csr.json:
+  file.managed:
+    - source: salt://kubernetes/files/json_file.j2
+    - template: jinja
+    - defaults:
+      certs: {{ salt['pillar.get']('certs:kubeproxy-csr') }}
+
+generate_admin_cert:
+  cmd.run:
+    - name: cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=kubernetes kube-proxy-csr.json | cfssljson -bare admin
+    - cwd: /root
