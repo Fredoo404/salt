@@ -63,6 +63,7 @@ generate_admin_cert:
 {% do certs['worker-csr'].update({'CN':'system:node:' + worker }) %}
 {% set private_ip = salt['mine.get']('{ worker }', 'internal_ip') %}
 {% set public_ip = salt['mine.get']('{ worker }', 'external_ip') %}
+{{ show_full_context() }}
 
 /root/{{ worker }}-csr.json:
   file.managed:
