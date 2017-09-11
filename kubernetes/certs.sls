@@ -74,4 +74,5 @@ generate_admin_cert:
 generate_{{ worker }}_cert:
   cmd.run:
     - name: cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -hostname={{ worker }},{{ private_ip }},{{ public_ip }} -profile=kubernetes {{ worker }}-csr.json | cfssljson -bare {{ worker }}
+    - cwd: /root
 {% endfor %}
