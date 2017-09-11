@@ -94,3 +94,28 @@ generate_kube_proxy_cert:
   cmd.run:
     - name: cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=kubernetes kube-proxy-csr.json | cfssljson -bare kube-proxy
     - cwd: /root
+
+#############################################################
+#
+# Generate Kubernetes certs.
+#
+#############################################################
+
+{% set hostname_config = '' %}
+{% for server, addr in salt['mine.get']('G@roles:controllers', 'internal_ip', 'compound') %}
+{% set hostname_config = hostname_config + addr %}
+{% endfor %}
+{% set ip_lb = salt['mine.get']('G@roles:lb', 'external_ip', 'compound') %}
+{% set hostname_config = hostname_config + ',' + ip_lb + ',127.0.0.1, kubernetes.default' %}
+
+/root/kubernetes-csr.json:
+  file.managed:
+    - source: salt://kubernetes/files/json_file.j2
+    - template: jinja
+    - defaults:
+      certs: {{ salt['pillar.get']('certs:kubernetes-csr') }}
+
+generate_kubernetes_cert:
+  cmd.run:
+    - name: cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -hostname={{ hostname_config }} -profile=kubernetes kubernetes-csr.json | cfssljson -bare kubernetes
+    - cdw: /root
