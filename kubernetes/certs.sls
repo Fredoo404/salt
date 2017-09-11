@@ -90,7 +90,7 @@ generate_{{ worker }}_cert:
     - defaults:
       certs: {{ salt['pillar.get']('certs:kubeproxy-csr') }}
 
-generate_admin_cert:
+generate_kube_proxy_cert:
   cmd.run:
     - name: cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -profile=kubernetes kube-proxy-csr.json | cfssljson -bare admin
     - cwd: /root
