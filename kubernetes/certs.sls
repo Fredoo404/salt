@@ -75,6 +75,11 @@ generate_{{ worker }}_cert:
   cmd.run:
     - name: cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -hostname={{ worker }},{{ private_ip|join(',') }},{{ public_ip|join(',') }} -profile=kubernetes {{ worker }}-csr.json | cfssljson -bare {{ worker }}
     - cwd: /root
+
+copy_{{ worker }}_certs_on_{{ worker }}:
+  cmd.run:
+    - name: 'salt-cp -G "roles:workers" /root/{{ worker }}*.pem /root/'
+
 {% endfor %}
 
 #############################################################
@@ -102,6 +107,7 @@ generate_kube_proxy_cert:
 #############################################################
 
 {% set hostname_config = [] %}
+{% do hostname_config.append('10.32.0.1') %} # Need to be added in pillar.
 {% for addr in salt['mine.get']('G@roles:controllers', 'internal_ip', 'compound').values() %}
 {% do hostname_config.append(addr) %}
 {% endfor %}
