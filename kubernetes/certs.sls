@@ -78,7 +78,7 @@ generate_{{ worker }}_cert:
 
 copy_{{ worker }}_certs_on_{{ worker }}:
   cmd.run:
-    - name: 'salt-cp -G "roles:workers" /root/{{ worker }}*.pem /root/'
+    - name: 'salt-cp "{{ worker }}" /root/{{ worker }}*.pem /root/'
 
 {% endfor %}
 
