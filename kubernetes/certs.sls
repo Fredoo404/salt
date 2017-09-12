@@ -127,3 +127,7 @@ generate_kubernetes_cert:
   cmd.run:
     - name: cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -hostname={{ hostname_config|join(',') }} -profile=kubernetes kubernetes-csr.json | cfssljson -bare kubernetes
     - cwd: /root
+
+copy_kubernetes_certs_on_controllers:
+  cmd.run:
+    - name: 'salt-cp -G "roles:controllers" /root/kubernetes*.pem /root/'
