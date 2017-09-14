@@ -19,3 +19,14 @@ create_certs:
     - tgt_type: grain
     - sls: kubernetes.certs
 
+
+#############################################################
+#
+# Deploy kubectl config
+#
+#############################################################
+install_kubectl:
+  salt.state:
+    - tgt: 'roles:k8s-cli'
+    - tgt_type: grain
+    - sls: kubernetes.kubectl_config
