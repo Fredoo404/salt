@@ -8,4 +8,4 @@ mine_functions:
   machine_name:
     mine_function: network.get_hostname
 kubernetes:
-  cluster_name: 'My kubernetes'
+  cluster_name: 'My-kubernetes'
