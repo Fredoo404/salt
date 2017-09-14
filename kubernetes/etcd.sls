@@ -20,5 +20,4 @@ retrieve_and_extract_etcd:
     - template: jinja
     - defaults: 
       hostname: {{ salt['grains.get']('id') }}
-      ip: {{ salt['grains.get']('ip_interfaces:eth0')
-
+      ip: {{ salt['grains.get']('ip_interfaces:eth0') }}
