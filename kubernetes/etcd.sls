@@ -14,9 +14,21 @@ retrieve_and_extract_etcd:
 /var/lib/etcd:
   file.directory
 
+/etc/etcd/ca.pem:
+  file.copy:
+    - source: /root/ca.pem
+
+/etc/etcd/kubernetes-key.pem:
+  file.copy:
+    - source: /root/kubernetes-key.pem
+
+/etc/etcd/kubernetes.pem:
+  file.copy:
+    - source: /root/kubernetes.pem
+
 {% set config = [] %}
 {% for server, addrs in salt['mine.get']('G@roles:controllers', 'internal_ip', 'compound').items() %}
-{% do config.append(server + '=https://'addrs + ':2380') %}
+{% do config.append({server + "=https://"addrs + ":2380"}) %}
 {% endfor %}
 
 /etc/systemd/system/etcd.service:
