@@ -9,3 +9,4 @@ mine_functions:
     mine_function: network.get_hostname
 kubernetes:
   cluster_name: 'My-kubernetes'
+  secret: 'itbeEYeMR2yFl7pPZ2WONIUIo2gZDS+ILmo0owUfcZw='
