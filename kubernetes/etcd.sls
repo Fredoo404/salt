@@ -38,7 +38,7 @@ retrieve_and_extract_etcd:
     - defaults: 
       hostname: {{ salt['grains.get']('id') }}
       ip: {{ salt['grains.get']('ip_interfaces:eth0') }}
-      config: {{ config|joins(',') }}
+      config: {{ config|join(',') }}
 
 systemctl_daemon_reload:
   cmd.run:
