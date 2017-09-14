@@ -39,7 +39,7 @@ deploy_etcd:
   salt.state:
     - tgt: 'roles:controllers'
     - tgt_type: grain
-    - sls: etcd
+    - sls: kubernetes.etcd
 
 #############################################################
 #
