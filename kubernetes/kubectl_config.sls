@@ -7,6 +7,8 @@ include:
 #
 #############################################################
 
+{% set ip_lb = salt['mine.get']('G@roles:lb', 'external_ip', 'compound').values() %}
+
 config_set_cluster_kubeproxy:
   cmd.run:
     - name: kubectl config set-cluster {{ salt['pillar.get']('kubernetes:cluster_name') }} --certificate-authority=ca.pem --embed-certs=true --server=https://{{ ip_lb[0] }}:6443 --kubeconfig=kube-proxy.kubeconfig
@@ -32,8 +34,6 @@ config_use_context_kubeproxy:
 # Generate Kubectl configuration for workers.
 #
 #############################################################
-
-{% set ip_lb = salt['mine.get']('G@roles:lb', 'external_ip', 'compound').values() %}
 {% for worker in salt['mine.get']('G@roles:workers', 'machine_name', 'compound') %}
 
 config_set_cluster_kubectl_{{ worker }}:
