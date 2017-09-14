@@ -28,7 +28,7 @@ retrieve_and_extract_etcd:
 
 {% set config = [] %}
 {% for server, addrs in salt['mine.get']('G@roles:controllers', 'internal_ip', 'compound').items() %}
-{% do config.append({server + "=https://"addrs + ":2380"}) %}
+{% do config.append({server+"=https://"+addrs+":2380"}) %}
 {% endfor %}
 
 /etc/systemd/system/etcd.service:
