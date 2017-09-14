@@ -14,10 +14,25 @@ retrieve_and_extract_etcd:
 /var/lib/etcd:
   file.directory
 
+{% set config = [] %}
+{% for server, addrs in salt['mine.get']('G@roles:controllers', 'internal_ip', 'compound').items() %}
+{% do config.append(server + '=https://'addrs + ':2380') %}
+{% endfor %}
+
 /etc/systemd/system/etcd.service:
   file.managed:
-    - source: salt://etcd/files/etcd.service
+    - source: salt://kubernetes/files/etcd.service
     - template: jinja
     - defaults: 
       hostname: {{ salt['grains.get']('id') }}
       ip: {{ salt['grains.get']('ip_interfaces:eth0') }}
+      config: {{ config|joins(',') }}
+
+systemctl_daemon_reload:
+  cmd.run:
+    - name: systemctl daemon-reload
+
+etcd:
+  service.running:
+    - enable: true
+
