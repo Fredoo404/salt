@@ -22,6 +22,10 @@ config_set_constext_{{ worker }}:
   cmd.run:
     - name: kubectl config set-context default --cluster={{ salt['pillar.get']('kubernetes:cluster_name') }} --user=system:node:{{ worker }} --kubeconfig={{ worker }}.kubeconfig
 
+config_use_context_{{ worker }}:
+  cmd.run:
+    - name: kubectl config use-context default --kubeconfig={{ worker }}.kubeconfig
+
 copy_{{ worker }}_certs_on_{{ worker }}:
   cmd.run:
     - name: 'salt-cp "{{ worker }}" /root/{{ worker }}*.kubeconfig /root/'
