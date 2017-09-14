@@ -32,12 +32,24 @@ install_kubectl:
 
 #############################################################
 #
+# Deploy etcd on controllers
+#
+#############################################################
+deploy_etcd:
+  salt.state:
+    - tgt: 'roles:controllers'
+    - tgt_type: grain
+    - sls: etcd
+
+#############################################################
+#
 # Bootstrapping controllers
 #
 #############################################################
-encryption_config:
+bootstrapping_controllers:
   salt.state:
     - tgt: 'roles:controllers'
     - tgt_type: grain
     - sls: kubernetes.controllers
+    
     
