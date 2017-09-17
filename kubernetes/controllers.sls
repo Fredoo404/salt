@@ -1,5 +1,7 @@
 
 {% if salt['grains.get']('roles') == 'controllers' %}
+include:
+  - kubernetes.kubectl
 
 /root/encryption-config.yaml:
   file.managed:
@@ -7,11 +9,6 @@
     - template: jinja
     - defaults:
       key: {{ salt['pillar.get']('kubernetes:secret') }}
-
-{% else %}
-
-include:
-  - kubernetes.kubectl
 
 /usr/local/bin/kube-apiserver:
   file.managed:
