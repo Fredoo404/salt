@@ -55,7 +55,7 @@ include:
 
 /etc/systemd/system/kube-apiserver.service:
   file.managed:
-    - source: salt://kubernetes/files/kube-apiserver.service.j2
+    - source: salt://kubernetes/files/kube-apiserver.service
     - template: jinja
     - defaults:
       ip: {{ salt['grains.get']('ip_interfaces:eth0')[0] }}
@@ -74,5 +74,21 @@ include:
     - template: jinja
     - defaults:
       ip: {{ salt['grains.get']('ip_interfaces:eth0')[0] }}
+
+systemctl_daemon_reload:
+  cmd.run:
+    - name: systemctl daemon-reload
+
+kube-apiserver:
+  service.running:
+    - enable: True
+
+kube-controller-manager:
+  service.running:
+    - enable: True
+
+kube-scheduler:
+  service.running:
+    - enable: True
 
 {% endif %}
