@@ -43,6 +43,11 @@ include:
     - source: /root/kubernetes.pem
     - makedirs: True
 
+/var/lib/kubernetes/kubernetes-key.pem:
+  file.copy:
+    - source: /root/kubernetes-key.pem
+    - makedirs: True
+
 /var/lib/kubernetes/encryption-config.yaml:
   file.copy:
     - source: /root/encryption-config.yaml
