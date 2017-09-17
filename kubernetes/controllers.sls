@@ -28,9 +28,6 @@ include:
     - skip_verify: True
     - mode: 755
 
-/var/lib/kubernetes:
-  file.directory:
-
 /var/lib/kubernetes/ca.pem:
   file.copy:
     - source: /root/ca.pem
