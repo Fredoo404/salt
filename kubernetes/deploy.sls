@@ -53,3 +53,16 @@ bootstrapping_controllers:
     - sls: kubernetes.controllers
     
     
+#############################################################
+#
+# Bootstrapping load-balancer
+#
+#############################################################
+bootstrapping_loadbalancer:
+  salt.state:
+    - tgt: 'roles:lb'
+    - tgt_type: grain
+    - sls: 
+      - haproxy
+      - kubernetes.lb
+      - haproxy.service
