@@ -59,7 +59,7 @@ include:
     - template: jinja
     - defaults:
       ip: {{ salt['grains.get']('ip_interfaces:eth0')[0] }}
-      config: {{ config }}
+      config: {{ config|join(',') }}
 
 /etc/systemd/system/kube-controller-manager.service:
   file.managed:
