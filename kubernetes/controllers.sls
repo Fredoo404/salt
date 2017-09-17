@@ -50,7 +50,7 @@ include:
 
 {% set config = [] %}
 {% for server, addrs in salt['mine.get']('G@roles:controllers', 'internal_ip', 'compound').items() %}
-{% do config.append(server+"=https://"+addrs+":2379") %}
+{% do config.append("https://"+addrs+":2379") %}
 {% endfor %}
 
 /etc/systemd/system/kube-apiserver.service:
