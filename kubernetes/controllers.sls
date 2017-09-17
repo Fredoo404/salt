@@ -68,5 +68,11 @@ include:
     - defaults:
       ip: {{ salt['grains.get']('ip_interfaces:eth0')[0] }}
  
+/etc/systemd/system/kube-scheduler.service:
+  file.managed:
+    - source: salt://kubernetes/files/kube-scheduler.service
+    - template: jinja
+    - defaults:
+      ip: {{ salt['grains.get']('ip_interfaces:eth0')[0] }}
 
 {% endif %}
