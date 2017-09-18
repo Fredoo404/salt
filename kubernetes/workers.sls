@@ -22,9 +22,8 @@ retrieve_and_extract_cni:
     - skip_verify: True
     - enforce_toplevel: False
 
-retrieve_and_extract_runc:
-  archive.extracted:
+retrieve_and_runc:
+  file.managed:
     - name: /usr/local/bin/runc
     - source: https://github.com/opencontainers/runc/releases/download/v1.0.0-rc4/runc.amd64
     - skip_verify: True
-    - enforce_toplevel: False
