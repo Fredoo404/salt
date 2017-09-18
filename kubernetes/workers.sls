@@ -40,8 +40,10 @@ copy_conmon:
   file.copy:
     - name: /usr/local/libexec/crio/
     - source: /usr/local/bin/conmon
+    - makedirs: True
 
 copy_pause:
   file.copy:
     - name: /usr/local/libexec/crio/
     - source: /usr/local/bin/pause
+    - makedirs: True
