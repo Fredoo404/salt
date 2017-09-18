@@ -3,9 +3,9 @@ Description=Kubernetes Scheduler
 Documentation=https://github.com/GoogleCloudPlatform/kubernetes
 
 [Service]
-ExecStart=/usr/local/bin/kube-scheduler \\
-  --leader-elect=true \\
-  --master=http://{{ ip }}:8080 \\
+ExecStart=/usr/local/bin/kube-scheduler \
+  --leader-elect=true \
+  --master=http://{{ ip }}:8080 \
   --v=2
 Restart=on-failure
 RestartSec=5
