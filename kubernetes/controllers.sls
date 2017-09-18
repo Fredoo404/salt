@@ -15,18 +15,21 @@ include:
     - source: https://storage.googleapis.com/kubernetes-release/release/v1.7.4/bin/linux/amd64/kube-apiserver
     - skip_verify: True
     - mode: 755
+    - replace: False
 
 /usr/local/bin/kube-controller-manager:
   file.managed:
     - source: https://storage.googleapis.com/kubernetes-release/release/v1.7.4/bin/linux/amd64/kube-controller-manager
     - skip_verify: True
     - mode: 755
+    - replace: False
 
 /usr/local/bin/kube-scheduler:
   file.managed:
     - source: https://storage.googleapis.com/kubernetes-release/release/v1.7.4/bin/linux/amd64/kube-scheduler
     - skip_verify: True
     - mode: 755
+    - replace: False
 
 /var/lib/kubernetes/ca.pem:
   file.copy:
