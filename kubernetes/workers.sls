@@ -21,5 +21,4 @@ retrieve_and_extract_cni:
     - archive_format: tar
     - skip_verify: True
     - enforce_toplevel: False
-    - options: -C
 
