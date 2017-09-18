@@ -66,3 +66,15 @@ bootstrapping_loadbalancer:
       - haproxy
       - kubernetes.lb
       - haproxy.service
+
+#############################################################
+#
+# Bootstrapping workers
+#
+#############################################################
+bootstrapping_workers:
+  salt.state:
+    - tgt: 'roles:workers'
+    - tgt_type: grain
+    - sls:
+      - kubernetes.workers
