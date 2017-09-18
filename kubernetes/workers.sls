@@ -11,7 +11,8 @@ install_dependencies:
       - libostree-1-1
 
 /opt/cni/bin:
-  file.directory
+  file.directory:
+    - makedirs: True
 
 retrieve_and_extract_cni:
   archive.extracted:
