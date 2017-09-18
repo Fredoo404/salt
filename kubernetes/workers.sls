@@ -38,12 +38,12 @@ retrieve_and_extract_crio:
     
 copy_conmon:
   file.copy:
-    - name: /usr/local/libexec/crio/
+    - name: /usr/local/libexec/crio/conmon
     - source: /usr/local/bin/conmon
     - makedirs: True
 
 copy_pause:
   file.copy:
-    - name: /usr/local/libexec/crio/
+    - name: /usr/local/libexec/crio/pause
     - source: /usr/local/bin/pause
     - makedirs: True
