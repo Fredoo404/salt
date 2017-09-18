@@ -18,6 +18,7 @@ retrieve_and_extract_cni:
   archive.extracted:
     - name: /opt/cni/bin/
     - source: https://github.com/containernetworking/plugins/releases/download/v0.6.0/cni-plugins-amd64-v0.6.0.tgz
+    - archive_format: tar
     - skip_verify: True
     - enforce_toplevel: False
     - options: -C
