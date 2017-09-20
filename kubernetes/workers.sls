@@ -48,3 +48,28 @@ copy_pause:
     - name: /usr/local/libexec/crio/pause
     - source: /usr/local/bin/pause
     - makedirs: True
+
+kube-proxy:
+  file.managed:
+    - name: /usr/local/bin/
+    - source: https://storage.googleapis.com/kubernetes-release/release/v1.7.4/bin/linux/amd64/kube-proxy
+    - mode: 755
+    - skip_verify: True
+
+kubelet:
+  file.managed:
+    - name: /usr/local/bin/
+    - source:  https://storage.googleapis.com/kubernetes-release/release/v1.7.4/bin/linux/amd64/kubelet
+    - mode: 755
+    - skip_verify: True
+
+/etc/cni/net.d/10-bridge.conf:
+  file.managed:
+    - source: salt://kubernetes/files/10-bridge.conf.j2
+    - template: jinja
+    - defaults:
+      pod-cidr: {{ salt['grains.get']('pod-cidr') }}
+
+/etc/cni/net.d/99-loopback.conf:
+  file.managed:
+    - source: salt://kubernetes/files/99-looopback.conf

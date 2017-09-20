@@ -33,16 +33,19 @@ m4_ubuntu_fcu:
         log_level: debug
       grains:
         roles: workers
+        pod-cidr: 10.200.0.0/24
   - worker-1:
       minion:
         log_level: debug
       grains:
         roles: workers
+        pod-cidr: 10.200.1.0/24
   - worker-2:
       minion:
         log_level: debug
       grains:
         roles: workers
+        pod-cidr: 10.200.2.0/24
   - load-balancer:
       minion:
         log_level: debug

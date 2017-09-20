@@ -78,3 +78,4 @@ bootstrapping_workers:
     - tgt_type: grain
     - sls:
       - kubernetes.workers
+      - kubernetes.kubectl
