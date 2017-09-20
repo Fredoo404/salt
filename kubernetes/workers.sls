@@ -73,3 +73,18 @@ copy_pause:
   file.managed:
     - source: salt://kubernetes/files/99-loopback.conf
     - makedirs: True
+
+/etc/systemd/system/crio.service:
+  file.managed:
+    - source: salt://kubernetes/files/crio.service
+    - makedirs: True
+
+/var/lib/kubelet/{{ salt['grains.get']('id') }}.pem:
+  file.copy:
+    - source: /root/{{ salt['grains.get']('id') }}.pem
+    - makedirs: True
+
+/var/lib/kubelet/{{ salt['grains.get']('id') }}-key.pem:
+  file.copy:
+    - source: /root/{{ salt['grains.get']('id') }}-key.pem
+    - makedirs: True
