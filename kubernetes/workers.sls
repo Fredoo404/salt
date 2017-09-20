@@ -88,3 +88,23 @@ copy_pause:
   file.copy:
     - source: /root/{{ salt['grains.get']('id') }}-key.pem
     - makedirs: True
+
+/var/lib/kubelet/kubeconfig/{{ salt['grains.get']('id') }}.kubeconfig:
+  file.copy:
+    - source: /root/{{ salt['grains.get']('id') }}.kubeconfig
+    - makedirs: True
+
+/var/lib/kubernetes/ca.pem:
+  file.copy:
+    - source: /root/ca.pem
+    - makedirs: True
+
+/etc/systemd/system/kubelet.service:
+  file.managed:
+    - source: salt://kubernetes/files/kubelet.service.j2
+    - template: jinja
+    - makedirs: True
+    - defaults:
+      pod-cidr: {{ salt['grains.get']('pod-cidr') }}
+      hostname: {{ salt['grains.get']('id') }}
+      
