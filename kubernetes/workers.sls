@@ -49,16 +49,14 @@ copy_pause:
     - source: /usr/local/bin/pause
     - makedirs: True
 
-kube-proxy:
+/usr/local/bin/kube-proxy:
   file.managed:
-    - name: /usr/local/bin/
     - source: https://storage.googleapis.com/kubernetes-release/release/v1.7.4/bin/linux/amd64/kube-proxy
     - mode: 755
     - skip_verify: True
 
-kubelet:
+/usr/local/bin/kubelet:
   file.managed:
-    - name: /usr/local/bin/
     - source:  https://storage.googleapis.com/kubernetes-release/release/v1.7.4/bin/linux/amd64/kubelet
     - mode: 755
     - skip_verify: True
