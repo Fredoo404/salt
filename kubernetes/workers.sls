@@ -71,5 +71,5 @@ copy_pause:
 
 /etc/cni/net.d/99-loopback.conf:
   file.managed:
-    - source: salt://kubernetes/files/99-looopback.conf
+    - source: salt://kubernetes/files/99-loopback.conf
     - makedirs: True
