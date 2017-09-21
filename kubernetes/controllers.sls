@@ -90,13 +90,16 @@ systemctl_daemon_reload:
 kube-apiserver:
   service.running:
     - enable: True
+    - reload: True
 
 kube-controller-manager:
   service.running:
     - enable: True
+    - reload: True
 
 kube-scheduler:
   service.running:
     - enable: True
+    - reload: True
 
 {% endif %}
