@@ -50,6 +50,24 @@ copy_pause:
     - source: /usr/local/bin/pause
     - makedirs: True
 
+copy_seccomp_file:
+  file.copy:
+    - name: /etc/crio/seccomp.json
+    - source: /usr/local/bin/seccomp.json
+    - makedirs: True
+
+copy_crio_conf_file:
+  file.copy:
+    - name: /etc/crio/crio.conf
+    - source: /usr/local/bin/crio.conf
+    - makedirs: True
+
+copy_policy_file:
+  file.copy:
+    - name: /etc/containers/policy.json
+    - source: /usr/local/bin/policy.json
+    - makedirs: True
+
 /usr/local/bin/kube-proxy:
   file.managed:
     - source: https://storage.googleapis.com/kubernetes-release/release/v1.7.4/bin/linux/amd64/kube-proxy
