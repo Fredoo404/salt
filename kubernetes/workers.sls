@@ -110,3 +110,28 @@ copy_pause:
     - defaults:
       hostname: {{ salt['grains.get']('id') }}
       
+/var/lib/kubelet/kubeconfig/kube-proxy.kubeconfig:
+  file.copy:
+    - source: /root/kube-proxy.kubeconfig
+    - makedirs: True
+
+/etc/systemd/system/kube-proxy.service:
+  file.managed:
+    - source: salt://kubernetes/files/kube-proxy.service.j2
+    - makedirs: True
+
+systemctl_daemon_reload_for_workers:
+  cmd.run:
+    - name: systemctl daemon-reload
+
+crio:
+  service.running:
+    - enable: True
+
+kubelet:
+  service.running:
+    - enable: True
+
+kube-proxy:
+  service.running:
+    - enable: True
