@@ -79,3 +79,15 @@ bootstrapping_workers:
     - sls:
       - kubernetes.workers
       - kubernetes.kubectl
+
+#############################################################
+#
+# Configure kubectl remote access
+#
+#############################################################
+kubectl_remote_access:
+  salt.state:
+    - tgt: 'roles:k8s-cli'
+    - tgt_type: grain
+    - sls:
+      - kubernetes.remote-access
