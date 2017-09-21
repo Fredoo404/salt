@@ -28,6 +28,7 @@ retrieve_runc:
     - source: https://github.com/opencontainers/runc/releases/download/v1.0.0-rc4/runc.amd64
     - mode: 755
     - skip_verify: True
+    - replace: False
 
 retrieve_and_extract_crio:
   archive.extracted:
@@ -54,12 +55,14 @@ copy_pause:
     - source: https://storage.googleapis.com/kubernetes-release/release/v1.7.4/bin/linux/amd64/kube-proxy
     - mode: 755
     - skip_verify: True
+    - replace: False
 
 /usr/local/bin/kubelet:
   file.managed:
     - source:  https://storage.googleapis.com/kubernetes-release/release/v1.7.4/bin/linux/amd64/kubelet
     - mode: 755
     - skip_verify: True
+    - replace: False
 
 /etc/cni/net.d/10-bridge.conf:
   file.managed:
