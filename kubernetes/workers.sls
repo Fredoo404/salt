@@ -110,7 +110,7 @@ copy_pause:
     - defaults:
       hostname: {{ salt['grains.get']('id') }}
       
-/var/lib/kubelet/kubeconfig/kube-proxy.kubeconfig:
+/var/lib/kube-proxy/kubeconfig:
   file.copy:
     - source: /root/kube-proxy.kubeconfig
     - makedirs: True
