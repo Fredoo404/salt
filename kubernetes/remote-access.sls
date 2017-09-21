@@ -2,7 +2,7 @@
 
 kubectl-set-cluster:
   cmd.run:
-    - name: kubectl config set-cluster kubernetes-the-hard-way --certificate-authority=ca.pem --embed-certs=true --server=https://{{ ip_lb }}:6443
+    - name: kubectl config set-cluster kubernetes-the-hard-way --certificate-authority=ca.pem --embed-certs=true --server=https://{{ ip_lb[0] }}:6443
     - cwd: /root
 
 kubectl-set-credentials:
