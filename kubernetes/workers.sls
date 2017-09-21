@@ -108,6 +108,6 @@ copy_pause:
     - template: jinja
     - makedirs: True
     - defaults:
-      pod-cidr: {{ salt['grains.get']('pod-cidr') }}
+      pod-cidr: {{ grains['pod-cidr'] }}
       hostname: {{ salt['grains.get']('id') }}
       
