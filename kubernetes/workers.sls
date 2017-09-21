@@ -92,7 +92,7 @@ copy_pause:
     - source: /root/{{ salt['grains.get']('id') }}-key.pem
     - makedirs: True
 
-/var/lib/kubelet/kubeconfig/{{ salt['grains.get']('id') }}.kubeconfig:
+/var/lib/kubelet/kubeconfig:
   file.copy:
     - source: /root/{{ salt['grains.get']('id') }}.kubeconfig
     - makedirs: True
