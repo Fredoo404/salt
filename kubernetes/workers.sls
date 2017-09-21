@@ -145,11 +145,14 @@ systemctl_daemon_reload_for_workers:
 crio:
   service.running:
     - enable: True
+    - reload: True
 
 kubelet:
   service.running:
     - enable: True
+    - reload: True
 
 kube-proxy:
   service.running:
     - enable: True
+    - reload: True
