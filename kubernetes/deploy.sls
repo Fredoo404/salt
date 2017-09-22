@@ -1,5 +1,20 @@
 #############################################################
 #
+# Mine update and refresh_pillar
+#
+#############################################################
+mine_update:
+  salt.function:
+    - name: mine.update
+    - tgt: '*'
+
+pillar_update:
+  salt.function:
+    - name: saltutil.refresh_pillar
+    - tgt: '*'
+
+#############################################################
+#
 # Fix name of machine
 #
 #############################################################
