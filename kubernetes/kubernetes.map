@@ -1,5 +1,5 @@
 m4_ubuntu_fcu:
-  - kubectl:
+  - k8s-kubectl:
       make_master: True
       master:
         user: root
@@ -13,40 +13,40 @@ m4_ubuntu_fcu:
           - git: master:base https://github.com/fredoo404/salt.git root=pillar
       grains: 
         roles: k8s-cli
-  - controllers-0:
+  - k8s-controllers-0:
       minion:
         log_level: debug
       grains:
         roles: controllers
-  - controllers-1:
+  - k8s-controllers-1:
       minion:
         log_level: debug
       grains:
         roles: controllers
-  - controllers-2:
+  - k8s-controllers-2:
       minion:
         log_level: debug
       grains:
         roles: controllers
-  - worker-0:
+  - k8s-worker-0:
       minion:
         log_level: debug
       grains:
         roles: workers
         pod-cidr: 10.200.0.0/24
-  - worker-1:
+  - k8s-worker-1:
       minion:
         log_level: debug
       grains:
         roles: workers
         pod-cidr: 10.200.1.0/24
-  - worker-2:
+  - k8s-worker-2:
       minion:
         log_level: debug
       grains:
         roles: workers
         pod-cidr: 10.200.2.0/24
-  - load-balancer:
+  - k8s-load-balancer:
       minion:
         log_level: debug
       grains:
