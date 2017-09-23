@@ -87,8 +87,6 @@ copy_policy_file:
     - source: salt://kubernetes/files/10-bridge.conf.j2
     - template: jinja
     - makedirs: True
-    - defaults:
-      pod-cidr: {{ salt['grains.get']('pod-cidr') }}
 
 /etc/cni/net.d/99-loopback.conf:
   file.managed:
