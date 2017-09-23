@@ -12,10 +12,10 @@ kubectl-set-credentials:
 
 kubectl-set-context:
   cmd.run:
-    - name: kubectl config set-context {{ salt['pillar.get']('kubernetes:cluster_name') }} --cluster={{ salt['pillar.get']('kubernetes:cluster_name') }} --user=admin
+    - name: kubectl config set-context default --cluster={{ salt['pillar.get']('kubernetes:cluster_name') }} --user=admin
     - cwd: /root
 
 kubectl-use-context:
   cmd.run:
-    - name: kubectl config use-context {{ salt['pillar.get']('kubernetes:cluster_name') }}
+    - name: kubectl config use-context default
     - cwd: /root
