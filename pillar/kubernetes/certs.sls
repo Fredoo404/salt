@@ -30,7 +30,7 @@ certs:
     names:
       - C: "US"
         L: "Portland"
-        O: "Kubernetes"
+        O: "system:masters"
         OU: "My kubernetes"
         ST: "Oregon"
   worker-csr:
@@ -41,7 +41,7 @@ certs:
     names:
       - C: "US"
         L: "Portland"
-        O: "Kubernetes"
+        O: "system:nodes"
         OU: "My kubernetes"
         ST: "Oregon"
   kubeproxy-csr:
@@ -52,7 +52,7 @@ certs:
     names:
       - C: "US"
         L: "Portland"
-        O: "Kubernetes"
+        O: "system:node-proxier"
         OU: "My kubernetes"
         ST: "Oregon"
   kubernetes-csr:
