@@ -5,4 +5,4 @@
     - defaults:
       ip: {{ salt['grains.get']('ip_interfaces:eth0')[0] }}
     - watch_in:
-      - service: haproxy
+      - service: service_haproxy
