@@ -1,6 +1,6 @@
 #############################################################
 #
-# Mine update and refresh_pillar
+# Mine update, refresh_pillar and set host file.
 #
 #############################################################
 mine_update:
@@ -12,6 +12,11 @@ pillar_update:
   salt.function:
     - name: saltutil.refresh_pillar
     - tgt: '*'
+
+resolv:
+  salt.state:
+    - tgt: '*'
+    - sls: common.resolv
 
 #############################################################
 #
