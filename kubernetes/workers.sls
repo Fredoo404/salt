@@ -82,12 +82,6 @@ copy_policy_file:
     - skip_verify: True
     - replace: False
 
-/etc/cni/net.d/10-bridge.conf:
-  file.managed:
-    - source: salt://kubernetes/files/10-bridge.conf.j2
-    - template: jinja
-    - makedirs: True
-
 /etc/cni/net.d/99-loopback.conf:
   file.managed:
     - source: salt://kubernetes/files/99-loopback.conf
