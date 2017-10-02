@@ -73,15 +73,11 @@ include:
   file.managed:
     - source: salt://kubernetes/files/kube-controller-manager.service
     - template: jinja
-    - defaults:
-      ip: {{ salt['grains.get']('ip_interfaces:eth0')[0] }}
  
 /etc/systemd/system/kube-scheduler.service:
   file.managed:
     - source: salt://kubernetes/files/kube-scheduler.service
     - template: jinja
-    - defaults:
-      ip: {{ salt['grains.get']('ip_interfaces:eth0')[0] }}
 
 systemctl_daemon_reload:
   cmd.run:
@@ -102,4 +98,19 @@ kube-scheduler:
     - enable: True
     - reload: True
 
+/root/kube-apiserver-to-kubelet.yml:
+  file.managed:
+    - source: salt://kubernetes/files/kube-apiserver-to-kubelet.yml
+
+kubectl_create_kube_apiserver_to_kubelet:
+  cmd.run:
+    - name: kubectl create -f /root/kube-apiserver-to-kubelet.yml
+
+/root/kube-apiserver.yml:
+  file.managed:
+    - source: salt://kubernetes/files/kube-apiserver.yml
+
+kubectl_create_kube_apiserver:
+  cmd.run:
+    - name: kubectl create -f /root/kube-apiserver.yml
 {% endif %}
