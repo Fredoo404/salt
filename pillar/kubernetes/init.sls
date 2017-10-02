@@ -8,6 +8,6 @@ mine_functions:
   machine_name:
     mine_function: network.get_hostname
 kubernetes:
-  version: 1.8.0
+  version: 1.7.7
   cluster_name: 'Kubernetes'
   secret: 'itbeEYeMR2yFl7pPZ2WONIUIo2gZDS+ILmo0owUfcZw='
