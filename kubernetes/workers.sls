@@ -1,18 +1,20 @@
 
-flatpak_repo:
-  cmd.run:
-    - name: "add-apt-repository -y ppa:alexlarsson/flatpak && apt-get update"
-
 install_dependencies:
   pkg.installed:
     - pkgs:
       - socat 
-      - libgpgme11 
-      - libostree-1-1
 
 /opt/cni/bin:
   file.directory:
     - makedirs: True
+
+retrieve_and_extract_containerd:
+  archive.extracted:
+    - name: /
+    - source: https://github.com/kubernetes-incubator/cri-containerd/releases/download/v1.0.0-alpha.0/cri-containerd-1.0.0-alpha.0.tar.gz
+    - archive_format: tar
+    - skip_verify: True
+    - enforce_toplevel: False
 
 retrieve_and_extract_cni:
   archive.extracted:
@@ -21,52 +23,6 @@ retrieve_and_extract_cni:
     - archive_format: tar
     - skip_verify: True
     - enforce_toplevel: False
-
-retrieve_runc:
-  file.managed:
-    - name: /usr/local/bin/runc
-    - source: https://github.com/opencontainers/runc/releases/download/v1.0.0-rc4/runc.amd64
-    - mode: 755
-    - skip_verify: True
-    - replace: False
-
-retrieve_and_extract_crio:
-  archive.extracted:
-    - name: /usr/local/bin
-    - source: https://storage.googleapis.com/kubernetes-the-hard-way/crio-amd64-v1.0.0-beta.0.tar.gz
-    - archive_format: tar
-    - skip_verify: True
-    - enforce_toplevel: False
-    
-copy_conmon:
-  file.copy:
-    - name: /usr/local/libexec/crio/conmon
-    - source: /usr/local/bin/conmon
-    - makedirs: True
-
-copy_pause:
-  file.copy:
-    - name: /usr/local/libexec/crio/pause
-    - source: /usr/local/bin/pause
-    - makedirs: True
-
-copy_seccomp_file:
-  file.copy:
-    - name: /etc/crio/seccomp.json
-    - source: /usr/local/bin/seccomp.json
-    - makedirs: True
-
-copy_crio_conf_file:
-  file.copy:
-    - name: /etc/crio/crio.conf
-    - source: /usr/local/bin/crio.conf
-    - makedirs: True
-
-copy_policy_file:
-  file.copy:
-    - name: /etc/containers/policy.json
-    - source: /usr/local/bin/policy.json
-    - makedirs: True
 
 /usr/local/bin/kube-proxy:
   file.managed:
@@ -85,11 +41,6 @@ copy_policy_file:
 /etc/cni/net.d/99-loopback.conf:
   file.managed:
     - source: salt://kubernetes/files/99-loopback.conf
-    - makedirs: True
-
-/etc/systemd/system/crio.service:
-  file.managed:
-    - source: salt://kubernetes/files/crio.service
     - makedirs: True
 
 /var/lib/kubelet/{{ salt['grains.get']('id') }}.pem:
@@ -134,7 +85,12 @@ systemctl_daemon_reload_for_workers:
   cmd.run:
     - name: systemctl daemon-reload
 
-crio:
+containerd:
+  service.running:
+    - enable: True
+    - reload: True
+
+cri-containerd:
   service.running:
     - enable: True
     - reload: True
