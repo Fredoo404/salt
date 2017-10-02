@@ -70,14 +70,14 @@ copy_policy_file:
 
 /usr/local/bin/kube-proxy:
   file.managed:
-    - source: https://storage.googleapis.com/kubernetes-release/release/v1.7.4/bin/linux/amd64/kube-proxy
+    - source: https://storage.googleapis.com/kubernetes-release/release/v{{ salt['pillar.get']('kubernetes:version') }}/bin/linux/amd64/kube-proxy
     - mode: 755
     - skip_verify: True
     - replace: False
 
 /usr/local/bin/kubelet:
   file.managed:
-    - source:  https://storage.googleapis.com/kubernetes-release/release/v1.7.4/bin/linux/amd64/kubelet
+    - source:  https://storage.googleapis.com/kubernetes-release/release/v{{ salt['pillar.get']('kubernetes:version') }}/bin/linux/amd64/kubelet
     - mode: 755
     - skip_verify: True
     - replace: False

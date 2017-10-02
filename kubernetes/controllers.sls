@@ -12,21 +12,21 @@ include:
 
 /usr/local/bin/kube-apiserver:
   file.managed:
-    - source: https://storage.googleapis.com/kubernetes-release/release/v1.7.4/bin/linux/amd64/kube-apiserver
+    - source: https://storage.googleapis.com/kubernetes-release/release/v{{ salt['pillar.get']('kubernetes:version') }}/bin/linux/amd64/kube-apiserver
     - skip_verify: True
     - mode: 755
     - replace: False
 
 /usr/local/bin/kube-controller-manager:
   file.managed:
-    - source: https://storage.googleapis.com/kubernetes-release/release/v1.7.4/bin/linux/amd64/kube-controller-manager
+    - source: https://storage.googleapis.com/kubernetes-release/release/v{{ salt['pillar.get']('kubernetes:version') }}/bin/linux/amd64/kube-controller-manager
     - skip_verify: True
     - mode: 755
     - replace: False
 
 /usr/local/bin/kube-scheduler:
   file.managed:
-    - source: https://storage.googleapis.com/kubernetes-release/release/v1.7.4/bin/linux/amd64/kube-scheduler
+    - source: https://storage.googleapis.com/kubernetes-release/release/v{{ salt['pillar.get']('kubernetes:version') }}/bin/linux/amd64/kube-scheduler
     - skip_verify: True
     - mode: 755
     - replace: False
