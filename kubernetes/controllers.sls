@@ -105,6 +105,7 @@ kube-scheduler:
 kubectl_create_kube_apiserver_to_kubelet:
   cmd.run:
     - name: kubectl create -f /root/kube-apiserver-to-kubelet.yml
+    - cwd: /root
 
 /root/kube-apiserver.yml:
   file.managed:
@@ -113,4 +114,5 @@ kubectl_create_kube_apiserver_to_kubelet:
 kubectl_create_kube_apiserver:
   cmd.run:
     - name: kubectl create -f /root/kube-apiserver.yml
+    - cwd: /root
 {% endif %}
