@@ -97,22 +97,4 @@ kube-scheduler:
   service.running:
     - enable: True
     - reload: True
-
-/root/kube-apiserver-to-kubelet.yml:
-  file.managed:
-    - source: salt://kubernetes/files/kube-apiserver-to-kubelet.yml
-
-kubectl_create_kube_apiserver_to_kubelet:
-  cmd.run:
-    - name: kubectl create -f /root/kube-apiserver-to-kubelet.yml
-    - cwd: /root
-
-/root/kube-apiserver.yml:
-  file.managed:
-    - source: salt://kubernetes/files/kube-apiserver.yml
-
-kubectl_create_kube_apiserver:
-  cmd.run:
-    - name: kubectl create -f /root/kube-apiserver.yml
-    - cwd: /root
 {% endif %}

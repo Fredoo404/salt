@@ -102,7 +102,7 @@ bootstrapping_workers:
 
 #############################################################
 #
-# Configure kubectl remote access
+# Configure kubectl remote access and post install
 #
 #############################################################
 kubectl_remote_access:
@@ -110,4 +110,5 @@ kubectl_remote_access:
     - tgt: 'roles:k8s-cli'
     - tgt_type: grain
     - sls:
-      - kubernetes.remote-access
+      - kubernetes.remote_access
+      - kubernetes.post_install
