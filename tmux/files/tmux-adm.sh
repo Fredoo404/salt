@@ -15,7 +15,7 @@ function create_window() {
 
 tmux -f /usr/local/etc/tmux-adm/tmux.conf new-session -d -s "Cloud" -n "adm"
 
-{% for server, addrs in salt['mine.get']('*', 'internal_ip', 'compound').items() %}
+{% for server, addrs in salt['mine.get']('*', 'internal_ip', 'compound').items() -%}
 create_window "{{ server }}" "{{ addrs }}"
 {% endfor %}
 
