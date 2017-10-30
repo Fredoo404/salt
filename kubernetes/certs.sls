@@ -29,10 +29,12 @@ generate_ca_cert:
 copy_ca_certs_on_controllers:
   cmd.run:
     - name: 'salt-cp -G "roles:controllers" /root/ca*.pem /root/'
+    - cwd: /usr/bin/
 
 copy_ca_certs_on_workers:
   cmd.run:
     - name: 'salt-cp -G "roles:workers" /root/ca*.pem /root/'
+    - cwd: /usr/bin/
 
 #############################################################
 #
@@ -79,6 +81,7 @@ generate_{{ worker }}_cert:
 copy_{{ worker }}_certs_on_{{ worker }}:
   cmd.run:
     - name: 'salt-cp "{{ worker }}" /root/{{ worker }}*.pem /root/'
+    - cwd: /usr/bin/
 
 {% endfor %}
 
@@ -131,3 +134,4 @@ generate_kubernetes_cert:
 copy_kubernetes_certs_on_controllers:
   cmd.run:
     - name: 'salt-cp -G "roles:controllers" /root/kubernetes*.pem /root/'
+    - cwd: /usr/bin/
