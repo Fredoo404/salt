@@ -59,12 +59,10 @@ config_use_context_{{ worker }}:
 copy_{{ worker }}_kubectl_on_{{ worker }}:
   cmd.run:
     - name: 'salt-cp "{{ worker }}" /root/{{ worker }}*.kubeconfig /root/'
-    - cwd: /usr/bin/
 
 copy_kubeproxy_kubectl_on_{{ worker }}:
   cmd.run:
     - name: 'salt-cp "{{ worker }}" /root/kube-proxy.kubeconfig /root/'
-    - cwd: /usr/bin/
 
 {% endfor %}
 
