@@ -11,7 +11,7 @@ install_dependencies:
 retrieve_and_extract_containerd:
   archive.extracted:
     - name: /
-    - source: https://github.com/kubernetes-incubator/cri-containerd/releases/download/v1.0.0-alpha.0/cri-containerd-1.0.0-alpha.0.tar.gz
+    - source: https://github.com/kubernetes-incubator/cri-containerd/releases/download/v1.0.0-alpha.1/cri-containerd-1.0.0-alpha.1.tar.gz
     - archive_format: tar
     - skip_verify: True
     - enforce_toplevel: False
