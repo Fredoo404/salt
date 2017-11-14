@@ -82,6 +82,30 @@ copy_{{ worker }}_certs_on_{{ worker }}:
 
 {% endfor %}
 
+{% set certs = salt['pillar.get']('certs') %}
+{% for worker in salt['mine.get']('G@roles:controllers', 'machine_name', 'compound') %}
+{% do certs['worker-csr'].update({'CN':'system:node:' + worker }) %}
+{% set private_ip = salt['mine.get'](worker, 'internal_ip').values() %}
+{% set public_ip = salt['mine.get'](worker, 'external_ip').values() %}
+
+/root/{{ worker }}-csr.json:
+  file.managed:
+    - source: salt://kubernetes/files/json_file.j2
+    - template: jinja
+    - defaults:
+      certs: {{ certs['worker-csr'] }}
+
+generate_{{ worker }}_cert:
+  cmd.run:
+    - name: cfssl gencert -ca=ca.pem -ca-key=ca-key.pem -config=ca-config.json -hostname={{ worker }},{{ private_ip|join(',') }} -profile=kubernetes {{ worker }}-csr.json | cfssljson -bare {{ worker }}
+    - cwd: /root
+
+copy_{{ worker }}_certs_on_{{ worker }}:
+  cmd.run:
+    - name: 'salt-cp "{{ worker }}" /root/{{ worker }}*.pem /root/'
+
+{% endfor %}
+
 #############################################################
 #
 # Generate Kube-proxy certs.
