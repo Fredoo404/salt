@@ -1,0 +1,28 @@
+[Unit]
+Description=Kubernetes Kubelet
+Documentation=https://github.com/GoogleCloudPlatform/kubernetes
+After=cri-containerd.service
+Requires=cri-containerd.service
+
+[Service]
+ExecStart=/usr/local/bin/kubelet \
+  --allow-privileged=true \
+  --client-ca-file=/var/lib/kubernetes/ca.pem \
+  --cluster-dns=10.32.0.10 \
+  --cluster-domain=cluster.local \
+  --container-runtime=remote \
+  --container-runtime-endpoint=unix:///var/run/cri-containerd.sock \
+  --image-pull-progress-deadline=2m \
+  --kubeconfig=/var/lib/kubelet/kubeconfig \
+  --runtime-request-timeout=15m \
+  --tls-cert-file=/var/lib/kubelet/{{ hostname }}.pem \
+  --tls-private-key-file=/var/lib/kubelet/{{ hostname }}-key.pem \
+  --pod-manifest-path=/etc/kubernetes/manifests \
+  --enable-debugging-handlers=true \
+  --cgroup-root=/ \
+  --v=2
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

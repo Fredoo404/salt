@@ -63,6 +63,15 @@ retrieve_and_extract_cni:
     - source: /root/ca.pem
     - makedirs: True
 
+{% if salt['grains.get']('roles') == 'controllers' %}
+/etc/systemd/system/kubelet.service:
+  file.managed:
+    - source: salt://kubernetes/files/kubelet.service.controllers.j2
+    - template: jinja
+    - makedirs: True
+    - defaults:
+      hostname: {{ salt['grains.get']('id') }}
+{% else %}
 /etc/systemd/system/kubelet.service:
   file.managed:
     - source: salt://kubernetes/files/kubelet.service.j2
@@ -70,6 +79,7 @@ retrieve_and_extract_cni:
     - makedirs: True
     - defaults:
       hostname: {{ salt['grains.get']('id') }}
+{% endif %}
       
 /var/lib/kube-proxy/kubeconfig:
   file.copy:
