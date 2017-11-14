@@ -1,0 +1,99 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kube-controller-manager
+  namespace: kube-system
+spec:
+  containers:
+  - command:
+    - /bin/sh
+    - -c
+    - /usr/local/bin/kube-controller-manager
+      --address=0.0.0.0
+      --allocate-node-cidrs=true
+      --cluster-cidr=10.200.0.0/16
+      --cluster-name=Kubernetes
+      --cluster-signing-cert-file=/var/lib/kubernetes/ca.pem
+      --cluster-signing-key-file=/var/lib/kubernetes/ca-key.pem
+      --leader-elect=true
+      --master=http://127.0.0.1:8080
+      --root-ca-file=/var/lib/kubernetes/ca.pem
+      --service-account-private-key-file=/var/lib/kubernetes/ca-key.pem
+      --service-cluster-ip-range=10.32.0.0/16
+      --v=2 1>>/var/log/kube-controller-manager.log 2>&1
+    image: gcr.io/google_containers/kube-controller-manager:v1.8.2
+    livenessProbe:
+      httpGet:
+        path: /healthz
+        port: 10252
+      initialDelaySeconds: 15
+      timeoutSeconds: 1
+    name: kube-controller-manager
+    volumeMounts:
+    - mountPath: /srv/lib
+      name: srvlib
+      readOnly: true
+    - mountPath: /var/lib/kubernetes
+      name: varlibkube
+      readOnly: true
+    - mountPath: /var/log/kube-controller-manager.log
+      name: logfile
+    - mountPath: /etc/ssl
+      name: etcssl
+      readOnly: true
+    - mountPath: /usr/share/ssl
+      name: usrsharessl
+      readOnly: true
+    - mountPath: /var/ssl
+      name: varssl
+      readOnly: true
+    - mountPath: /usr/ssl
+      name: usrssl
+      readOnly: true
+    - mountPath: /usr/lib/ssl
+      name: usrlibssl
+      readOnly: true
+    - mountPath: /usr/local/openssl
+      name: usrlocalopenssl
+      readOnly: true
+    - mountPath: /etc/openssl
+      name: etcopenssl
+      readOnly: true
+    - mountPath: /etc/pki/tls
+      name: etcpkitls
+      readOnly: true
+  hostNetwork: true
+  volumes:
+  - hostPath:
+      path: /srv/lib
+    name: srvlib
+  - hostPath:
+      path: /var/lib/kubernetes
+    name: varlibkube
+  - hostPath:
+      path: /var/log/kube-controller-manager.log
+    name: logfile
+  - hostPath:
+      path: /etc/ssl
+    name: etcssl
+  - hostPath:
+      path: /usr/share/ssl
+    name: usrsharessl
+  - hostPath:
+      path: /var/ssl
+    name: varssl
+  - hostPath:
+      path: /usr/ssl
+    name: usrssl
+  - hostPath:
+      path: /usr/lib/ssl
+    name: usrlibssl
+  - hostPath:
+      path: /usr/local/openssl
+    name: usrlocalopenssl
+  - hostPath:
+      path: /etc/openssl
+    name: etcopenssl
+  - hostPath:
+      path: /etc/pki/tls
+    name: etcpkitls

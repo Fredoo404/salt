@@ -10,26 +10,6 @@ include:
     - defaults:
       key: {{ salt['pillar.get']('kubernetes:secret') }}
 
-/usr/local/bin/kube-apiserver:
-  file.managed:
-    - source: https://storage.googleapis.com/kubernetes-release/release/v{{ salt['pillar.get']('kubernetes:version') }}/bin/linux/amd64/kube-apiserver
-    - skip_verify: True
-    - mode: 755
-    - replace: False
-
-/usr/local/bin/kube-controller-manager:
-  file.managed:
-    - source: https://storage.googleapis.com/kubernetes-release/release/v{{ salt['pillar.get']('kubernetes:version') }}/bin/linux/amd64/kube-controller-manager
-    - skip_verify: True
-    - mode: 755
-    - replace: False
-
-/usr/local/bin/kube-scheduler:
-  file.managed:
-    - source: https://storage.googleapis.com/kubernetes-release/release/v{{ salt['pillar.get']('kubernetes:version') }}/bin/linux/amd64/kube-scheduler
-    - skip_verify: True
-    - mode: 755
-    - replace: False
 
 /var/lib/kubernetes/ca.pem:
   file.copy:
@@ -61,40 +41,38 @@ include:
 {% do config.append("https://"+addrs+":2379") %}
 {% endfor %}
 
-/etc/systemd/system/kube-apiserver.service:
+/var/log/kube-apiserver.log:
   file.managed:
-    - source: salt://kubernetes/files/kube-apiserver.service
+    - makedirs: True
+    - content: 'log'
+
+/etc/kubernetes/manifests/kube-apiserver.yaml:
+  file.managed:
+    - source: salt://kubernetes/files/kube-apiserver.yaml
     - template: jinja
+    - makedirs: True
     - defaults:
       ip: {{ salt['grains.get']('ip_interfaces:eth0')[0] }}
       config: {{ config|join(',') }}
 
-/etc/systemd/system/kube-controller-manager.service:
+/var/log/kube-controller-manager.log:
   file.managed:
-    - source: salt://kubernetes/files/kube-controller-manager.service
+    - makedirs: True
+    - content: 'log'
+
+/etc/kubernetes/manifests/kube-controller-manager.yaml:
+    - source: salt://kubernetes/files/kube-controller-manager.yaml
     - template: jinja
- 
-/etc/systemd/system/kube-scheduler.service:
+    - makedirs: True
+
+/var/log/kube-scheduler.log:
   file.managed:
-    - source: salt://kubernetes/files/kube-scheduler.service
+    - makedirs: True
+    - content: 'log'
+
+/etc/kubernetes/manifests/kube-scheduler.yaml:
+    - source: salt://kubernetes/files/kube-scheduler.yaml
     - template: jinja
+    - makedirs: True
 
-systemctl_daemon_reload:
-  cmd.run:
-    - name: systemctl daemon-reload
-
-kube-apiserver:
-  service.running:
-    - enable: True
-    - reload: True
-
-kube-controller-manager:
-  service.running:
-    - enable: True
-    - reload: True
-
-kube-scheduler:
-  service.running:
-    - enable: True
-    - reload: True
 {% endif %}
