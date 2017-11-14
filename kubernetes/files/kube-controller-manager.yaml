@@ -21,7 +21,7 @@ spec:
       --service-account-private-key-file=/var/lib/kubernetes/ca-key.pem
       --service-cluster-ip-range=10.32.0.0/16
       --v=2 1>>/var/log/kube-controller-manager.log 2>&1
-    image: gcr.io/google_containers/kube-controller-manager:v1.8.2
+    image: gcr.io/google_containers/kube-controller-manager:v{{ salt['pillar.get']('kubernetes:version') }}
     livenessProbe:
       httpGet:
         path: /healthz

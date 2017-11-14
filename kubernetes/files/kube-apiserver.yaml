@@ -7,7 +7,7 @@ spec:
   hostNetwork: true
   containers:
   - name: kube-apiserver
-    image: gcr.io/google_containers/kube-apiserver:v1.8.2
+    image: gcr.io/google_containers/kube-apiserver:v{{ salt['pillar.get']('kubernetes:version') }}
     command:
     - /bin/sh
     - -c
