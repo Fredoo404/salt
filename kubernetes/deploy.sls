@@ -92,6 +92,19 @@ bootstrapping_loadbalancer:
 # Bootstrapping workers
 #
 #############################################################
+bootstrapping_workers_on_controllers:
+  salt.state:
+    - tgt: 'roles:controllers'
+    - tgt_type: grain
+    - sls:
+      - kubernetes.workers
+      - kubernetes.kubectl
+
+#############################################################
+#
+# Bootstrapping workers
+#
+#############################################################
 bootstrapping_workers:
   salt.state:
     - tgt: 'roles:workers'
