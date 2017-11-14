@@ -61,6 +61,7 @@ include:
     - content: 'log'
 
 /etc/kubernetes/manifests/kube-controller-manager.yaml:
+  file.managed:
     - source: salt://kubernetes/files/kube-controller-manager.yaml
     - template: jinja
     - makedirs: True
@@ -71,6 +72,7 @@ include:
     - content: 'log'
 
 /etc/kubernetes/manifests/kube-scheduler.yaml:
+  file.managed:
     - source: salt://kubernetes/files/kube-scheduler.yaml
     - template: jinja
     - makedirs: True
